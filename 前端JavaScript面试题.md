@@ -1102,10 +1102,30 @@ js操作获取和设置cookie
 2. 使用隐藏表单字段,将`session id`放在隐藏的表单字段中一同提交
 
 ###  JavaScript类型判断
-```
+```TypeScript
 typeof(obj) === "string"
 typeof obj === "string"
 obj.constructor === String
+// 判断变量的类型
+function getType(obj){
+	var str = Object.prototype.toString.call(obj);
+	var map={
+		'[object Boolean]'  : 'boolean', 
+		'[object Number]'   : 'number', 
+		'[object String]'   : 'string', 
+		'[object Function]' : 'function', 
+		'[object Array]'    : 'array', 
+		'[object Date]'     : 'date', 
+		'[object RegExp]'   : 'regExp', 
+		'[object Undefined]': 'undefined',
+		'[object Null]'     : 'null', 
+		'[object Object]'   : 'object'
+	}
+	if(obj instanceof Element){ //判断是否是dom元素，如div等
+		return "element";
+	}
+	return map[str];
+}
 ```
 ### 请用js去除字符串空格？
 
@@ -2525,89 +2545,40 @@ this的指向问题，在你不知道的js这本书中（神书）做了四点�
 3.显示绑定（利用call、apply、bind改变this） 
 4.new（var cat = new Animal() , this指向cat对象）
 
-## 25、你说自己抗压能力强，具体表现在哪里？
 
-略
 
-## 26、对前端前景的展望，以后前端会怎么发展
+### 对java的理解
 
-## 27、手写第一次面试没有写出来的链表问题，要求用es6写
+### 介绍node.js，并且介绍你用它做的项目
+### js对象中什么是可枚举性(enumerable)？
 
-## 28、平时是怎么学技术的？
-
-## 29、平时大学里面时间是怎么规划的？
-
-## 30、接下来有什么计划？这个学期和下个学期的计划是？
-
-## 31、项目中遇到的难点，或者你学习路上的难点
-
-## 32、你是通过什么方法和途径来学习前端的
-
-## 33、手写一个简单遍历算法
-
-## 34、解释一下react和vue，以及区别
-
-## 35、你在团队中更倾向于什么角色？
-
-## 36、对java的理解
-
-## 37、介绍node.js，并且介绍你用它做的项目
-
-## 38、手写一个js的深克隆
-
+可枚举性（enumerable）用来控制所描述的属性，是否将被包括在for...in循环之中。具体来说，如果一个属性的enumerable为false，下面三个操作不会取到该属性。
+* for..in循环
+* Object.keys方法
+* JSON.stringify方法
+```javascript
+var o = {a:1, b:2};
+ 
+o.c = 3;
+Object.defineProperty(o, 'd', {
+  value: 4,
+  enumerable: false
+});
+ 
+o.d
+// 4
+ 
+for( var key in o ) console.log( o[key] ); 
+// 1
+// 2
+// 3
+ 
+Object.keys(o)  // ["a", "b", "c"]
+ 
+JSON.stringify(o // => "{a:1,b:2,c:3}"
 ```
-function deepCopy(obj){
-    //判断是否是简单数据类型，
-    if(typeof obj == "object"){
-        //复杂数据类型
-        var result = obj.constructor == Array ? [] : {};
-        for(let i in obj){
-            result[i] = typeof obj[i] == "object" ? deepCopy(obj[i]) : obj[i];
-        }
-    }else {
-        //简单数据类型 直接 == 赋值
-        var result = obj;
-    }
-    return result;
-}
-```
+遍历操作都无法获取该属性，使得它有点像“秘密”属性，但还是可以直接获取它的值。
 
-## 39、for函数里面setTimeout异步问题
-
-## 40、手写归并排序
-
-<1>.长度为n(n>1),把该输入序列分成两个长度为n/2的子序列； 
-<2>.对这两个子序列分别采用归并排序，直到长度n小于2； 
-<3>.将两个排序好的子序列合并成一个最终的排序序列。
-
-```
-function mergeSort(arr) { 
-    var len = arr.length;
-    if(len < 2) {
-        return arr;
-    } else {
-        middle = Math.floor(len / 2);
-        var left = arr.slice(0, middle);
-        var right = arr.splice(middle);
-        return merge(mergeSort(left), mergeSort(right));
-    }
-
-}
-
-function merge(left, right) {
-    var result = [];
-    while(left.length && right.length) {
-        left[0] > right[0] ? result.push(right.shift()): result.push(left.shift());
-    }
-    if(left.length) {
-        result = result.concat(left);
-    }
-    if(right.length) {
-        result = result.concat(right);
-    }
-    return result;
-}
-```
 
 ## 41、介绍自己的项目
 
@@ -5319,41 +5290,9 @@ var  objclone  =  Object.assign({},obj);
 
 现在objclone的值是{a：1，b：2}，但指向与obj不同的对象。
 
-但请注意潜在的缺陷：Object.clone（）只会执行浅拷贝，而不是深拷贝。这意味着嵌套的对象不会被复制。他们仍然引用与原始相同的嵌套对象：
+但请注意潜在的缺陷：Object.assign（）只会执行浅拷贝，而不是深拷贝。这意味着嵌套的对象不会被复制。他们仍然引用与原始相同的嵌套对象：
 
-<textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 244.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
-
-| 
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-11
-
-12
-
-13
-
-14
-
- | 
+```
 
 let obj  =  {
 
@@ -5379,28 +5318,13 @@ console.log('After Change - obj: ',  obj); // 45 - This also changes
 
 console.log('After Change - objclone: ',  objclone);  // 45
 
- |
-
-<textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 73.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
-
-| 
-
-1
-
-2
-
-3
-
- | 
-
 for  (let  i  =  0;  i  <  5;  i++)  {
 
   setTimeout(function()  {  console.log(i);  },  i *  1000  );
 
 }
 
- |
-
+```
 ### 31、此代码将打印什么？
 
 <textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 73.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
@@ -5871,3 +5795,4 @@ function  inner  ()  {
 > http://web.jobbole.com/94523/
 > http://web.jobbole.com/95078/
 > https://github.com/BearD01001/front-end-QA-to-interview
+> https://blog.csdn.net/zxf13598202302/article/details/53517871
