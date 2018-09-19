@@ -3,13 +3,13 @@
 
 指令生命周期由**@angular/core**管理的,通过继承得到hook方法，构造函数在全部生命周期事件之前执行。
 ***
-###属性指令、结构指令、组件指令：
+### 属性指令、结构指令、组件指令：
 *   ngOnChanges：当Angular设置其接收当前和上一个对象值的数据绑定属性时响应。
 *   ngOnInit：在第一个ngOnChange触发器之后，初始化组件/指令。可用于从后端服务检索模板的数据。 
 *   ngDoCheck：检測并在Angular上下文发生变化时执行。
 *   ngOnDestroy：在Angular销毁指令/组件之前清除。取消订阅可观察的对象并脱离事件处理程序，以避免内存泄漏。
 
-###组件特有（模版的生命周期）：
+### 组件特有（模版的生命周期）：
 *   ngAfterContentInit：组件内容已初始化完毕
 *   ngAfterContentChecked：在Angular检查投影到其视图中的绑定的外部内容之后。
 *   ngAfterViewInit：Angular创建组件的视图后。
@@ -40,7 +40,7 @@ Route Guard仅仅是路由器执行来检查路由授权的接口方法。
 1.  [https://www.codeproject.com/Articles/1164813/Angular-Routing ](https://www.codeproject.com/Articles/1164813/Angular-Routing%C2%A0)
 2.  [https://vsavkin.com/angular-2-router-d9e30599f9ea#.kt4z1v957](https://vsavkin.com/angular-2-router-d9e30599f9ea#.kt4z1v957)
 
-##   什么是事件发射器？它是怎样在Angular 2中工作的？
+### 什么是事件发射器？它是怎样在Angular 2中工作的？
 
 EventEmitter是在@ angular/core模块中定义的类。由组件和指令内部声明。
 ```
@@ -50,7 +50,7 @@ onValueChange: EventEmitter<any>  = new EventEmitter();
 使用onValueChange.emit（value）方法来发出事件。
 在标签上直接绑定(onValueChange)="formControl.onValueChange(value)"
 
-###  怎样在Angular 2应用程序中使用codelyzer？
+### 怎样在Angular 2应用程序中使用codelyzer？
 
 全部企业应用程序都会遵循一组编码惯例和准则。以更好的方式维护代码。Codelyzer是一个开源工具。用于执行和检查是否遵循了提前定义的编码准则。Codelyzer仅对Angular和TypeScript项目进行静态代码分析。
 
@@ -91,7 +91,7 @@ const appRoutes = [
 4.  考虑使用AOT（**运行前**）编译或离线编译。
 5.  通过限制api。选择使用已知或安全环境/浏览器的app来防止XSRF攻击。
 
-##  AOT编译：
+### AOT编译：
 有效提升运行速度
 使用限制：
 
@@ -120,7 +120,7 @@ const appRoutes = [
 ##  TS中使用js定义类型或微信浏览器特有类
 
 1.第三方库一般带有它的`.d.ts` 文件，查看其中的类型定义直接使用。
-2.自己写.d.ts文件，关键字有type、declare
+2.自己写.d.ts文件，关键字有type、declare（declare可直接在使用处声明）
 
 在某些情况下，我们须要通过向现有类型提供一些更多的属性来扩展现有类型，或者假设我们须要定义其他类型以避免TypeScript警告。
 
