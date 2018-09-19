@@ -29,7 +29,10 @@
 * @Directive：指令定义装饰器
 * @Pipe：管道定义装饰器
 * @Injectable：服务定义装饰器，声明该类是单例使用依赖注入
-* 
+* @Output：输出数据/事件
+* @Input：输入数据/事件
+* @ViewChild：绑定第一个查询到的dom节点或指令
+* @ViewChildren：绑定多个dom节点或指令
 ## angularX代码库：
 * @angular/core：这里包含了很多常用的模块
   * NgModule：模块定义装饰器
@@ -63,7 +66,6 @@
   * platformBrowserDynamic：JIT编译
 * @angular/animations
   * trigger:创建一个动画
-  * 
 ## AngularX路由
 ### 基本功能：
 1. 延迟加载
@@ -101,7 +103,7 @@ const appRoutes = [
 > 有些网络环境差的后台管理系统一次性载入（建议GZIP压缩传输）所有页面离线存储起来，这样跳页面和二次访问也会更快，所以使用延迟加载也得看需求
 ```
 
-## 什么是事件发射器？它是怎样在AngularX中工作的？
+## 事件发射器
 
 EventEmitter是在@ angular/core模块中定义的类。由组件和指令内部声明。
 ```
@@ -164,9 +166,9 @@ Codelyzer执行在tslint的顶部，其编码约定通常在tslint.json文件里
 * 缓存的DOM将在浏览器中呈现得更快，并提供更好的性能。
 * shi使代码结构分离，互不影响
 
->1.  [https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM)
->2.  [https://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/](https://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/)
->3.  [https://code.tutsplus.com/tutorials/intro-to-shadow-dom--net-34966](https://code.tutsplus.com/tutorials/intro-to-shadow-dom--net-34966)
+>[https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM)
+>[https://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/](https://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/)
+>[https://code.tutsplus.com/tutorials/intro-to-shadow-dom--net-34966](https://code.tutsplus.com/tutorials/intro-to-shadow-dom--net-34966)
 
 ## AOT编译 优缺点
 AOT编译代表的是Ahead Of Time编译，当中Angular编译器在构建时，会将Angular组件和模板编译为本机JavaScript和HTML。编译好的HTML和JavaScript将会部署到Webserver，以便浏览器能够节省编译和渲染时间。
@@ -188,3 +190,118 @@ AOT编译代表的是Ahead Of Time编译，当中Angular编译器在构建时，
 4.  在编译之前，须要清理步骤
 
 > [angular官网AOT](https://angular.cn/guide/aot-compiler)
+
+## angularX高压打包部分命令
+```
+ng build --aot
+ionic build --prod
+```
+
+## 组件通信
+* 父组件到子组件:
+  * 父组件@outOut输出，子组件@Input输入
+  * 使用@ViewChild或@ViewChildren
+* 子组件到父组件：
+  * 子组件自定义事件用@Output传出，父组件用事件绑定获取。
+  * 使用EventEmitter事件发射器
+
+## 数据绑定
+* 属性绑定必须加attr：
+```TypeScript
+<tr><td [attr.colspan]="1 + 1">One-Two</td></tr>
+// 或者
+<tr><td attr.colspan="{{1 + 1}}">One-Two</td></tr>
+```
+* 双向绑定语法：
+```TypeScript
+//  将click单向绑定给clickFun
+<input (click)='clickFun($event)' >
+// 将valueStr单向绑定给ngModel
+// <input [ngModel]={{valueStr}} >
+//  将valueStr双向绑定给ngModel
+<input [(ngModel)]="valueStr" >
+```
+* 模版引用绑定：
+模版引用变量（# ／ ref-）
+可以在元素上用#或者ref-前缀来标记这个元素，然后在其他地方引用。
+```TypeScript
+<input #fax placeholder="fax number">
+// 或者
+// <input ref-fax placeholder="fax number">
+<button (click)="callFax(fax.value)">Fax</button>
+```
+## 动态表单
+
+## 响应式表单
+
+## 服务与依赖注入
+
+## 指令
+
+## 管道
+
+## 模块
+这是一个典型的模块声明：
+```TypeScript
+import { NgModule} from '@angular/core';
+import { Http, HttpModule, JsonpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, RouteReuseStrategy } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
+import {HttpClient, HttpClientModule , HttpResponse} from '@angular/common/http';
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
+@NgModule({
+  //  当前 NgModule 在 getModuleFactory 中的名字或唯一标识符。 如果为 undefined，则该模块不会被注册进 getModuleFactory 中。
+  id: 'UUID',
+  //  如果为 true，则该模块将会被 AOT 编译器忽略，因此永远不会用 JIT 编译它。
+  jit: true,
+  /*导入需要的模块*/
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    HttpModule,
+    JsonpModule,
+    HttpClientModule,
+    NgZorroAntdModule.forRoot(),
+    //  多语言模块，
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    }),
+    //  路由器会接受第一个匹配上导航所要求的路径那个路由。
+    RouterModule.forRoot(appRoutes,
+      {
+        enableTracing: false //  打印路由
+      }),
+  ],
+  //  声明该模块拥有的一组组件、指令和管道（统称可声明对象），子集可共用
+  declarations: [
+    AppComponent
+  ],
+  // 当该模块引导时需要进行引导的组件。列在这里的所有组件都会自动添加到 entryComponents 中。
+  bootstrap: [
+     AppComponent
+  ],
+  // 编译此 NgModule 中的组件集，这样它们才可以动态加载到视图中，让其他模块直接使用
+  entryComponents: [],
+  //  导出此模块拥有的一组组件、指令和管道可以在导入了本模块的模块下任何组件的模板中使用。 导出的这些可声明对象就是该模块的公共 API。
+  exports: [
+    
+  ],
+  /*导入需要的服务提供者*/
+  providers: [
+    HttpClient,
+    { provide: RouteReuseStrategy, useClass: SimpleReuseStrategy }
+  ],
+  //  该 NgModule 中允许使用的声明元素的 schema（HTML 架构）。 元素和属性（无论是 Angular 组件还是指令）都必须声明在 schema 中
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+})
+export class AppModule { }
+```

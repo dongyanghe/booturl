@@ -1,12 +1,13 @@
 # booturl（路径向导）
 
-#### 项目介绍
+### 项目介绍
 2018年前端最新经典面试题和资源的整合
 
 ### 文件路径:
-
     本项目内容见顶部文件目录↑↑↑（废话）
-
+    
+### 内容排序：
+    从上到下：常见→不常见 困难→简单
 #### 参与贡献
 
 1. Fork 本项目
@@ -14,7 +15,7 @@
 3. 提交代码
 4. 新建 Pull Request
 
-#### 部分内容来源
+### 部分内容来源
 > https://blog.csdn.net/wdlhao/article/details/79079660
 > https://blog.csdn.net/qq_22944825/article/details/78169321
 > http://web.jobbole.com/94523/

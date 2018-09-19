@@ -1800,7 +1800,7 @@ $(selector).removeAttr(class);删除class这个属性；
 
 　　(2)、live正是利用了事件委托机制来完成事件的监听处理，把节点的处理委托给了document，新添加的元素不必再绑定一次监听器。
 
-　　(3)、使用live（）方法但却只能放在直接选择的元素后面，不能在层级比较深，连缀的DOM遍历方法后面使用，即$(“ul”").live...可以，但$("body").find("ul").live...不行； 
+　　(3)、使用live()方法但却只能放在直接选择的元素后面，不能在层级比较深，连缀的DOM遍历方法后面使用，即$(“ul”").live...可以，但$("body").find("ul").live...不行； 
 
 实例如下：$( document ).on( "click", "#members li a", function( e ) {} );
 
@@ -3082,7 +3082,7 @@ b  defined?  true
 
 这是一种日益普遍的做法，被许多流行的JavaScript库（jQuery，Node.js等）所采用。这种技术在文件的全部内容周围创建一个闭包，这可能最重要的是创建一个私有名称空间，从而有助于避免不同JavaScript模块和库之间的潜在名称冲突。
 
-这种技术的另一个特点是为全局变量提供一个容易引用（可能更短）的别名。例如，这通常用于jQuery插件。 jQuery允许您使用jQuery.noConflict（）来禁用对jQuery名称空间的$引用。如果这样做了，你的代码仍然可以使用$使用闭包技术，如下所示：
+这种技术的另一个特点是为全局变量提供一个容易引用（可能更短）的别名。例如，这通常用于jQuery插件。 jQuery允许您使用jQuery.noConflict()来禁用对jQuery名称空间的$引用。如果这样做了，你的代码仍然可以使用$使用闭包技术，如下所示：
 
 <textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 43.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
 
@@ -3107,7 +3107,7 @@ b  defined?  true
 *   **消除隐藏威胁。**在没有严格模式的情况下，对null或undefined的这个值的引用会自动强制到全局。这可能会导致许多*headfakes*和*pull-out-your-hair*类型的错误。在严格模式下，引用null或undefined的这个值会引发错误。
 *   **不允许重复的参数值。** 严格模式在检测到函数的重复命名参数（例如，函数foo（val1，val2，val1）{}）时会引发错误，从而捕获代码中几乎可以肯定存在的错误，否则您可能会浪费大量的时间追踪。
     *   注意：它曾经是（在ECMAScript 5中）strict模式将禁止重复的属性名称（例如var object = {foo：“bar”，foo：“baz”};）但是从[ECMAScript 2015](https://stackoverflow.com/questions/30617139/whats-the-purpose-of-allowing-duplicate-property-names) 开始，就不再有这种情况了。
-*   **使eval（）更安全。** eval（）在严格模式和非严格模式下的行为方式有些不同。最重要的是，在严格模式下，在eval（）语句内部声明的变量和函数不会在包含范围中创建（它们是以非严格模式在包含范围中创建的，这也可能是问题的常见来源）。
+*   **使eval()更安全。** eval()在严格模式和非严格模式下的行为方式有些不同。最重要的是，在严格模式下，在eval()语句内部声明的变量和函数不会在包含范围中创建（它们是以非严格模式在包含范围中创建的，这也可能是问题的常见来源）。
 *   **抛出无效的使用错误的删除符。** 删除操作符（用于从对象中删除属性）不能用于对象的不可配置属性。当试图删除一个不可配置的属性时，非严格代码将自动失败，而在这种情况下，严格模式会引发错误。
 
 ### 6、考虑下面的两个函数。他们都会返回同样的值吗？为什么或者为什么不？
@@ -3226,9 +3226,9 @@ undefined
 
  |
 
-这不仅令人惊讶，而且特别令人烦恼的是，foo2（）返回未定义而没有引发任何错误。
+这不仅令人惊讶，而且特别令人烦恼的是，foo2()返回未定义而没有引发任何错误。
 
-原因与JavaScript中分号在技术上是可选的事实有关（尽管忽略它们通常是非常糟糕的形式）。因此，在foo2（）中遇到包含return语句的行（没有其他内容）时，*会在return语句之后立即自动插入分号。*
+原因与JavaScript中分号在技术上是可选的事实有关（尽管忽略它们通常是非常糟糕的形式）。因此，在foo2()中遇到包含return语句的行（没有其他内容）时，*会在return语句之后立即自动插入分号。*
 
 由于代码的其余部分是完全有效的，即使它没有被调用或做任何事情（它只是一个未使用的代码块，它定义了一个属性栏，它等于字符串“hello”），所以不会抛出任何错误。
 
@@ -3268,9 +3268,9 @@ console.log(NaN  ===  NaN);  // logs "false"
 
  |
 
-测试数字是否等于NaN的半可靠方法是使用内置函数isNaN（），但即使使用[isNaN（）也不是一个好的解决方案。](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN#Confusing_special-case_behavior).
+测试数字是否等于NaN的半可靠方法是使用内置函数isNaN()，但即使使用[isNaN()也不是一个好的解决方案。](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN#Confusing_special-case_behavior).
 
-一个更好的解决方案要么是使用value！==值，如果该值等于NaN，那么只会生成true。另外，ES6提供了一个新的[Number.isNaN（）函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN) ，它与旧的全局isNaN（）函数不同，也更加可靠。
+一个更好的解决方案要么是使用value！==值，如果该值等于NaN，那么只会生成true。另外，ES6提供了一个新的[Number.isNaN()函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN) ，它与旧的全局isNaN()函数不同，也更加可靠。
 
 ### 8、下面的代码输出什么？解释你的答案。
 
@@ -3338,7 +3338,7 @@ console.log(areTheNumbersAlmostEqual(0.1  +  0.2,  0.3));
 
 讨论写函数的可能方法isInteger（x），它确定x是否是一个整数。
 
-这听起来很平凡，事实上，ECMAscript 6为此正好引入了一个新的Number.isInteger（）函数，这是微不足道的。但是，在ECMAScript 6之前，这有点复杂，因为没有提供与Number.isInteger（）方法等价的方法。
+这听起来很平凡，事实上，ECMAscript 6为此正好引入了一个新的Number.isInteger()函数，这是微不足道的。但是，在ECMAScript 6之前，这有点复杂，因为没有提供与Number.isInteger()方法等价的方法。
 
 问题在于，在ECMAScript规范中，整数只在概念上存在;即数值始终作为浮点值存储。
 
@@ -3370,7 +3370,7 @@ function  isInteger(x)  {  return  Math.round(x)  ===  x;  }
 
  |
 
-请注意，在上面的实现中Math.ceil（）或Math.floor（）可以同样使用（而不是Math.round（））。
+请注意，在上面的实现中Math.ceil()或Math.floor()可以同样使用（而不是Math.round()）。
 
 或者：
 
@@ -3400,7 +3400,7 @@ function  isInteger(x)  {  return  parseInt(x,  10)  ===  x;  }
 
  |
 
-虽然这个基于parseInt的方法对许多x值很有效，但一旦x变得相当大，它将无法正常工作。问题是parseInt（）在解析数字之前将其第一个参数强制转换为字符串。因此，一旦数字变得足够大，其字符串表示将以指数形式呈现（例如1e + 21）。因此，parseInt（）将尝试解析1e + 21，但是当它到达e字符时将停止解析，因此将返回值1.观察：
+虽然这个基于parseInt的方法对许多x值很有效，但一旦x变得相当大，它将无法正常工作。问题是parseInt()在解析数字之前将其第一个参数强制转换为字符串。因此，一旦数字变得足够大，其字符串表示将以指数形式呈现（例如1e + 21）。因此，parseInt()将尝试解析1e + 21，但是当它到达e字符时将停止解析，因此将返回值1.观察：
 
 <textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 58.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
 
@@ -3512,7 +3512,7 @@ false
 
 我们先来解释一下这些可能更为明显的部分：
 
-*   首先显示1和4，因为它们是通过简单调用console.log（）而没有任何延迟记录的
+*   首先显示1和4，因为它们是通过简单调用console.log()而没有任何延迟记录的
 *   在3之后显示，因为在延迟1000毫秒（即1秒）之后记录2，而在0毫秒的延迟之后记录3。
 
 好的。但是，如果在延迟0毫秒后记录3，这是否意味着它正在被立即记录？而且，如果是这样，不应该在4之前记录它，因为4是由后面的代码行记录的吗？
@@ -3521,9 +3521,9 @@ false
 
 浏览器有一个事件循环，它检查事件队列并处理未决事件。例如，如果在浏览器繁忙时（例如，处理onclick）在后台发生事件（例如脚本onload事件），则该事件被附加到队列中。当onclick处理程序完成时，将检查队列并处理该事件（例如，执行onload脚本）。
 
-同样，如果浏览器繁忙，setTimeout（）也会将其引用函数的执行放入事件队列中。
+同样，如果浏览器繁忙，setTimeout()也会将其引用函数的执行放入事件队列中。
 
-当值为零作为setTimeout（）的第二个参数传递时，它将尝试“尽快”执行指定的函数。具体来说，函数的执行放置在事件队列中，以在下一个计时器滴答时发生。但请注意，这不是直接的;该功能不会执行，直到下一个滴答声。这就是为什么在上面的例子中，调用console.log（4）发生在调用console.log（3）之前（因为调用console.log（3）是通过setTimeout调用的，所以稍微延迟了一点）。
+当值为零作为setTimeout()的第二个参数传递时，它将尝试“尽快”执行指定的函数。具体来说，函数的执行放置在事件队列中，以在下一个计时器滴答时发生。但请注意，这不是直接的;该功能不会执行，直到下一个滴答声。这就是为什么在上面的例子中，调用console.log（4）发生在调用console.log（3）之前（因为调用console.log（3）是通过setTimeout调用的，所以稍微延迟了一点）。
 
 ### 10、编写一个简单的函数（少于160个字符），返回一个布尔值，指示字符串是否是[palindrome](http://www.palindromelist.net/)。
 
@@ -3637,7 +3637,7 @@ function  sum(x)  {
 
 如果传递两个参数，我们只需将它们相加并返回。
 
-否则，我们假设它是以sum（2）（3）的形式被调用的，所以我们返回一个匿名函数，它将传递给sum（）（在本例中为2）的参数和传递给匿名函数的参数这种情况3）。
+否则，我们假设它是以sum（2）（3）的形式被调用的，所以我们返回一个匿名函数，它将传递给sum()（在本例中为2）的参数和传递给匿名函数的参数这种情况3）。
 
 **METHOD 2**
 
@@ -3967,13 +3967,13 @@ console.log("array 2: length="  +  arr2.length  +  " last="  +  arr2.slice(-1));
 
 arr1和arr2是相同的（即[‘n’，’h’，’o’，’j’，[‘j’，’o’，’n’，’e’，’s’]]）上述代码由于以下原因而被执行：
 
-*   调用数组对象的reverse（）方法不仅以相反的顺序返回数组，它还颠倒了数组本身的顺序（即在这种情况下，arr1）。
-*   reverse（）方法返回对数组本身的引用（即，在这种情况下为arr1）。因此，arr2仅仅是对arr1的引用（而不是副本）。因此，当对arr2做任何事情时（即，当我们调用arr2.push（arr3）;）时，arr1也会受到影响，因为arr1和arr2只是对同一个对象的引用。
+*   调用数组对象的reverse()方法不仅以相反的顺序返回数组，它还颠倒了数组本身的顺序（即在这种情况下，arr1）。
+*   reverse()方法返回对数组本身的引用（即，在这种情况下为arr1）。因此，arr2仅仅是对arr1的引用（而不是副本）。因此，当对arr2做任何事情时（即，当我们调用arr2.push（arr3）;）时，arr1也会受到影响，因为arr1和arr2只是对同一个对象的引用。
 
 这里有几个观点可以让人们回答这个问题：
 
-*   将数组传递给另一个数组的push（）方法会将整个数组作为单个元素推入数组的末尾。结果，声明arr2.push（arr3）;将arr3作为一个整体添加到arr2的末尾（即，它不连接两个数组，这就是concat（）方法的用途）。
-*   像Python一样，JavaScript在调用像slice（）这样的数组方法时，会承认负面下标，以此作为在数组末尾引用元素的方式;例如，下标-1表示数组中的最后一个元素，依此类推。
+*   将数组传递给另一个数组的push()方法会将整个数组作为单个元素推入数组的末尾。结果，声明arr2.push（arr3）;将arr3作为一个整体添加到arr2的末尾（即，它不连接两个数组，这就是concat()方法的用途）。
+*   像Python一样，JavaScript在调用像slice()这样的数组方法时，会承认负面下标，以此作为在数组末尾引用元素的方式;例如，下标-1表示数组中的最后一个元素，依此类推。
 
 ### 15、下面的代码将输出到控制台，为什么？
 
@@ -4501,7 +4501,7 @@ console.log((function  f(n){return  ((n  >  1)  ?  n *  f(n-1)  :  n)})(10));
 
 原因如下：
 
-命名函数f（）以递归方式调用自身，直到它调用f（1），它简单地返回1.因此，这就是它的作用：
+命名函数f()以递归方式调用自身，直到它调用f（1），它简单地返回1.因此，这就是它的作用：
 
 <textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 178.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
 
@@ -4657,9 +4657,9 @@ John Doe
 
  |
 
-第一个console.log打印未定义，因为我们从hero对象中提取方法，所以stoleSecretIdentity（）在_name属性不存在的全局上下文（即窗口对象）中被调用。
+第一个console.log打印未定义，因为我们从hero对象中提取方法，所以stoleSecretIdentity()在_name属性不存在的全局上下文（即窗口对象）中被调用。
 
-修复stoleSecretIdentity（）函数的一种方法如下：
+修复stoleSecretIdentity()函数的一种方法如下：
 
 <textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 43.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
 
@@ -4804,11 +4804,11 @@ obj.method(fn,  1);
 
 方法绑定到Object obj，obj.method用参数fn和1调用。虽然方法只接受一个参数，但调用它时已经传递了两个参数;第一个是函数回调，其他只是一个数字。
 
-当在内部方法中调用fn（）时，该函数在全局级别作为参数传递，this.length将有权访问在Object obj中定义的var length = 10（全局声明）而不是length = 5。
+当在内部方法中调用fn()时，该函数在全局级别作为参数传递，this.length将有权访问在Object obj中定义的var length = 10（全局声明）而不是length = 5。
 
 现在，我们知道我们可以使用arguments []数组访问JavaScript函数中的任意数量的参数。
 
-因此arguments0只不过是调用fn（）。在fn里面，这个函数的作用域成为参数数组，并且记录参数[]的长度将返回2。
+因此arguments0只不过是调用fn()。在fn里面，这个函数的作用域成为参数数组，并且记录参数[]的长度将返回2。
 
 因此输出将如上所述。
 
@@ -5000,7 +5000,7 @@ var  objclone  =  Object.assign({},obj);
 
 现在objclone的值是{a：1，b：2}，但指向与obj不同的对象。
 
-但请注意潜在的缺陷：Object.assign（）只会执行浅拷贝，而不是深拷贝。这意味着嵌套的对象不会被复制。他们仍然引用与原始相同的嵌套对象：
+但请注意潜在的缺陷：Object.assign()只会执行浅拷贝，而不是深拷贝。这意味着嵌套的对象不会被复制。他们仍然引用与原始相同的嵌套对象：
 
 ```
 
@@ -5183,7 +5183,7 @@ console.log(a[6]);
 
 a）它不会崩溃。 JavaScript引擎将使阵列插槽3至9成为“空插槽”。
 
-b）在这里，a [6]将输出未定义的值，但时隙仍为空，而不是未定义的。在某些情况下，这可能是一个重要的细微差别。例如，使用map（）时，map（）的输出中的空插槽将保持为空，但未定义的插槽将使用传递给它的函数重映射：
+b）在这里，a [6]将输出未定义的值，但时隙仍为空，而不是未定义的。在某些情况下，这可能是一个重要的细微差别。例如，使用map()时，map()的输出中的空插槽将保持为空，但未定义的插槽将使用传递给它的函数重映射：
 
 <textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="border: none; outline: none; font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 13px !important; line-height: 15px !important; font-family: Monaco, MonacoRegular, &quot;Courier New&quot;, monospace !important; display: block; -webkit-appearance: none; padding: 0px 5px; width: 608px; height: 88.5px; resize: none; overflow: auto; margin: 0px; position: absolute; opacity: 0; box-sizing: border-box; border-radius: 0px; box-shadow: none; white-space: pre; overflow-wrap: normal; color: rgb(0, 0, 0); background: rgb(255, 255, 255); tab-size: 4; z-index: 0;"></textarea>
 
