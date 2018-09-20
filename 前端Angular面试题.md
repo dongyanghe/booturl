@@ -1,14 +1,14 @@
+## AngularX的dom渲染机制
 
+## 数据绑定机制
 ## AngularX生命周期
-
 指令生命周期由**@angular/core**管理的,通过继承得到hook方法，构造函数在全部生命周期事件之前执行。
-***
-## 属性指令、结构指令、组件指令：
+### 属性指令、结构指令、组件指令生命周期：
 *   ngOnChanges：当 Angular（重新）设置数据绑定输入属性时响应。 该方法接受当前和上一属性值的 SimpleChanges 对象当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit() 之前。
 *   ngOnInit：在 Angular 第一次显示数据绑定和设置指令/组件的输入属性之后，初始化指令/组件。在第一轮 ngOnChanges() 完成之后调用，只调用一次。
 *   ngDoCheck：检測并在Angular上下文发生变化时执行。在每个 Angular 变更检测周期中调用，ngOnChanges() 和 ngOnInit() 之后。
 *   ngOnDestroy：在Angular销毁指令/组件之前清除。可在这里取消订阅可观察的对象并脱离事件处理程序，以避免内存泄漏。
-## 组件特有（模版的生命周期）：
+### 组件特有（模版的生命周期）：
 *   ngAfterContentInit：组件内容已初始化完毕
 *   ngAfterContentChecked：在Angular检查投影到其视图中的绑定的外部内容之后。
 *   ngAfterViewInit：Angular创建组件的视图后。
@@ -230,9 +230,27 @@ ionic build --prod
 // <input ref-fax placeholder="fax number">
 <button (click)="callFax(fax.value)">Fax</button>
 ```
-## 动态表单
 
 ## 响应式表单
+### 表单对象：
+* ReactiveFormsModule：响应式表单的 NgModule。
+* FormControl:管理单体表单控件的值和有效性状态。它对应于 HTML 的表单控件，比如input或 select。
+* FormGroup:管理一组 AbstractControl 实例的值和有效性状态。该组的属性中包括了它的子控件。组件中的顶级表单就是 FormGroup。
+* FormArray:管理一些 AbstractControl 实例数组的值和有效性状态。
+* AbstractControl:所有三种表单控件类（FormControl、FormGroup 和 FormArray）的抽象基类。它提供了一些公共的行为和属性。
+* FormBuilder:一个可注入的服务，提供一些用于提供创建控件实例的工厂方法。
+### 指令：
+* FormControlDirective：把一个独立的 FormControl 实例绑定到表单控件元素。
+* FormControlName：把一个现有 FormGroup 中的 FormControl 根据名字绑定到表单控件元素。
+* FormGroupDirective：把一个现有的 FormGroup 绑定到 DOM 元素。
+* FormGroupName：把一个内嵌的 FormGroup 绑定到一个 DOM 元素。
+* FormArrayName：把一个内嵌的 FormArray 绑定到一个 DOM 元素。
+### 与模版驱动表单区别：
+* 响应式表单是同步的，而模板驱动表单是异步的，模板驱动表单必须使用 setTimeout 等待一个变更检测周期才能从控件中提取值、测试有效性，或把它设置为新值。
+* Angular 指令会根据你提供的数据绑定信息（ngModel 等指令）替你创建表单控件对象。Angular 会自动更新这个可变的数据模型。
+### 表单校验：
+  
+## 模版驱动表单
 
 ## 服务与依赖注入
 
@@ -285,16 +303,16 @@ export function createTranslateLoader(http: Http) {
   declarations: [
     AppComponent
   ],
+  //  导出此模块拥有的一组组件、指令和管道可以在导入了本模块的模块下任何组件的模板中使用。 导出的这些可声明对象就是该模块的公共 API。
+  exports: [
+    
+  ],
   // 当该模块引导时需要进行引导的组件。列在这里的所有组件都会自动添加到 entryComponents 中。
   bootstrap: [
      AppComponent
   ],
   // 编译此 NgModule 中的组件集，这样它们才可以动态加载到视图中，让其他模块直接使用
   entryComponents: [],
-  //  导出此模块拥有的一组组件、指令和管道可以在导入了本模块的模块下任何组件的模板中使用。 导出的这些可声明对象就是该模块的公共 API。
-  exports: [
-    
-  ],
   /*导入需要的服务提供者*/
   providers: [
     HttpClient,
