@@ -1,7 +1,8 @@
 # booturl（路径向导）
-
+https://gitee.com/jikold 
+https://github.com/dongyanghe
 ### 项目介绍
-2018年前端最新经典面试题和资源的整合
+[我的processon首页](https://www.processon.com/u/556bcbf6e4b03f9cd579c4bb)，2018年前端最新经典面试题和资源的整合
 
 ### 文件路径:
     本项目内容见顶部文件目录↑↑↑（废话）
@@ -10,6 +11,7 @@
 ![image.png](https://upload-images.jianshu.io/upload_images/5138592-987b39aa5f7cea7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/5138592-8c6f901facbd3e47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/5138592-2bf3c2ce806f0eb9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+具体地址（可免费复制修改）：
 * [JavaScript](https://www.processon.com/view/link/5b51ba9ae4b067df59e3a2ce)
 * [设计模式 编程思想](https://www.processon.com/view/link/5ba4cdd6e4b08faf8c6053dc)
 * [AngularX](https://www.processon.com/view/link/5ba4cec7e4b0fe81b64214bc)
@@ -41,5 +43,8 @@
     > https://blog.csdn.net/sinat_17775997/article/details/69938720?utm_source=copy 
     > https://www.imooc.com/article/23647?block_id=tuijian_wz
     > https://blog.csdn.net/u013510838/article/details/60744715?utm_source=copy 
+* 设计模式
+    > https://blog.csdn.net/mayan_fe/article/details/8572003?utm_source=copy 
+    > http://www.cnblogs.com/xianyulaodi/p/5827821.html
 ---
 前端知识点——路径向导
