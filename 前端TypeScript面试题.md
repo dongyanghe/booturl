@@ -47,3 +47,8 @@ Observable提供像map。forEach，reduce之类的相似于数组的**运算符*
 4.  ES 2016提议的功能
 5.  使用反应式扩展（RxJS）
 6.  依据时间的变化，数组成员能够异步获取
+
+
+## React项目用过什么脚手架？Mern? Yeoman?
+
+Mern：MERN是脚手架的工具，它可以很容易地使用Mongo, Express, React and NodeJS生成同构JS应用。它最大限度地减少安装时间，并得到您使用的成熟技术来加速开发。

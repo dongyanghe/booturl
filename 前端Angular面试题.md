@@ -120,7 +120,7 @@ onValueChange: EventEmitter<any>  = new EventEmitter();
 Codelyzer执行在tslint的顶部，其编码约定通常在tslint.json文件里定义。Codelyzer能够直接通过Angularcli或npm执行。
 
 使用tslint，在配置文件配置：
-```
+```TypeScript
 "rulesDirectory": [
     "node_modules/codelyzer"
   ],
@@ -198,12 +198,16 @@ ionic build --prod
 ```
 
 ## 组件通信
-* 父组件到子组件:
+### 父组件到子组件:
   * 父组件@outOut输出，子组件@Input输入
   * 使用@ViewChild或@ViewChildren
-* 子组件到父组件：
+### 子组件到父组件：
   * 子组件自定义事件用@Output传出，父组件用事件绑定获取。
   * 使用EventEmitter事件发射器
+### 兄弟组件
+  * 将他们要共享的数据都在父组件注入后分别传递给它们
+  * 使用EventEmitter事件发射器
+  * 使用Observable观察者模式
 
 ## 数据绑定
 * 属性绑定必须加attr：
