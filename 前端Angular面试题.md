@@ -1,18 +1,18 @@
-## AngularX的dom渲染机制
+## AngularX、react的dom渲染和数据绑定机制
 
 
 ## AngularX生命周期
 指令生命周期由**@angular/core**管理的,通过继承得到hook方法，构造函数在全部生命周期事件之前执行。
 ### 属性指令、结构指令、组件指令生命周期：
-*   ngOnChanges：当 Angular（重新）设置数据绑定输入属性时响应。 该方法接受当前和上一属性值的 SimpleChanges 对象当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit() 之前。
-*   ngOnInit：在 Angular 第一次显示数据绑定和设置指令/组件的输入属性之后，初始化指令/组件。在第一轮 ngOnChanges() 完成之后调用，只调用一次。
-*   ngDoCheck：检測并在Angular上下文发生变化时执行。在每个 Angular 变更检测周期中调用，ngOnChanges() 和 ngOnInit() 之后。
-*   ngOnDestroy：在Angular销毁指令/组件之前清除。可在这里取消订阅可观察的对象并脱离事件处理程序，以避免内存泄漏。
+*   ngOnChanges：当 Angular（重新）**设置数据绑定输入属性时**响应。 该方法接受当前和上一属性值的 SimpleChanges 对象当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit() 之前。
+*   ngOnInit：在 Angular **第一次显示数据绑定和设置指令/组件的输入属性之后**，初始化指令/组件。在第一轮 ngOnChanges() 完成之后调用，只调用一次。
+*   ngDoCheck：检測并在Angular上下文发生变化时执行。在每个 Angular 变更检测周期中调用，**ngOnChanges() 和 ngOnInit() 之后**。
+*   ngOnDestroy：在Angular销毁指令/组件**之前**清除。可在这里取消订阅可观察的对象并脱离事件处理程序，以避免内存泄漏。
 ### 组件特有（模版的生命周期）：
-*   ngAfterContentInit：组件内容已初始化完毕
-*   ngAfterContentChecked：在Angular检查投影到其视图中的绑定的外部内容之后。
-*   ngAfterViewInit：Angular创建组件的视图后。
-*   ngAfterViewChecked：在Angular检查组件视图的绑定之后。
+*   ngAfterContentInit：组件内容已初始化完毕后，**第一次 ngDoCheck() 之后调用**，只调用一次。
+*   ngAfterContentChecked：在Angular检查投影到其视图中的绑定的外部内容之后。**ngAfterContentInit() 和每次 ngDoCheck() 之后**调用
+*   ngAfterViewInit：Angular创建组件的视图后。**第一次 ngAfterContentChecked() 之后**调用，只调用一次。
+*   ngAfterViewChecked：在Angular检查组件视图的绑定之后。ngAfterViewInit() 和**每次 ngAfterContentChecked() 之后**调用。
 
 ##  使用AngularX，和使用Angular 1相比。有什么优势？
 1.  AngularX是一个平台，不仅是一种语言
@@ -88,15 +88,17 @@ Route Guard仅仅是路由器执行来检查路由授权的接口方法。
 
 >[angular4.0 路由守卫详解](http://www.mamicode.com/info-detail-2121549.html)
 ### 延迟载入
-
 在AppModule主模块配置路由数组时使用loadChildren按模块加载
 canLoad： 控制是否允许延迟加载整个模块。
 ```
 const appRoutes = [
   {
-    path: '*',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: '*',  //  找不到的路径一律跳到login
+    <!-- component：,组件 -->
+    redirectTo: 'login',  //  跳转路径
+    pathMatch: 'full', //  默认为前缀匹配 "prefix"; "full" 为完全匹配
+    <!-- outlet：字符串，路由目标，面对多个路由的情况 -->
+    <!-- children：Routes 子路由相关 -->
   },
   {
     path: 'workspace',

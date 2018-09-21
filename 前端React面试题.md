@@ -1,17 +1,15 @@
 
 ## 当你调用setState的时候，发生了什么事？
-当调用 setState 时，React会做的第一件事情是将传递给 setState 的对象合并到组件的当前状态。这将启动一个称为和解（reconciliation）的过程。和解（reconciliation）的最终目标是以最有效的方式，根据这个新的状态来更新UI。 为此，React将构建一个新的 React 元素树（您可以将其视为 UI 的对象表示）。
-
+当调用 setState 时，React会做的第一件事情是将传递给 setState 的对象合并到组件的当前状态。这将启动一个称为**和解（reconciliation）**的过程。和解（reconciliation）的最终目标是以最有效的方式，根据这个新的状态来更新UI。 为此，React将构建一个新的 React 元素树（您可以将其视为 UI 的对象表示）。
 一旦有了这个树，为了弄清 UI 如何响应新的状态而改变，React 会将这个新树与上一个元素树相比较（ diff ）。
-
 通过这样做， React 将会知道发生的确切变化，并且通过了解发生什么变化，只需在绝对必要的情况下进行更新即可最小化 UI 的占用空间。
 
-在 React 当中 Element 和 Component 有何区别？
+## 在 React 当中 Element 和 Component 有何区别？
 简单地说，一个 React element 描述了你想在屏幕上看到什么。换个说法就是，一个 React element 是一些 UI 的对象表示。
 
 一个 React Component 是一个函数或一个类，它可以接受输入并返回一个 React element t（通常是通过 JSX ，它被转化成一个 createElement 调用）。
 
-有关更多信息，请查看 React Elements vs React Components
+> [React Elements vs React Components](https://segmentfault.com/a/1190000008447693)
 
 ## react生命周期函数
 
@@ -19,13 +17,13 @@
 
 一、初始化阶段：
 
-getDefaultProps:获取实例的默认属性
+getDefaultProps:配置默认的props,也可以用dufaultProps设置组件的默认属性.
 
-getInitialState:获取每个实例的初始化状态
+getInitialState:初始化state
 
-componentWillMount：组件即将被装载、渲染到页面上
+componentWillMount：组件即将被装载、渲染到页面上,整个生命周期只调用一次，此时可以修改state。
 
-render:组件在这里生成虚拟的DOM节点
+render:组件在这里生成虚拟的DOM节点，进行diff算法，更新dom树，此时就不能更改state。
 
 componentDidMount:组件真正在被装载之后
 
@@ -44,7 +42,13 @@ componentDidUpdate:组件已经更新
 三、销毁阶段：
 
 componentWillUnmount:组件即将销毁
+## react diff算法
+### diff策略
+* Web UI 中DOM节点跨层级的移动操作特别少，可以忽略不计
+* 拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。
+* 对于同一层级的一组子节点，它们可以通过唯一id进行区分。
 
+> https://blog.csdn.net/qq_26708777/article/details/78107577?utm_source=copy 
 ## 什么时候在功能组件( Class Component )上使用类组件( Functional Component )？
 如果您的组件具有状态( state )或生命周期方法，请使用 Class 组件。否则，使用功能组件
 
