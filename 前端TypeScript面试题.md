@@ -100,35 +100,53 @@ function applyMixins(mergeClass: any, baseClass: any[]) {
 }
 ```
 ## typeof 关键词有什么用？
+```TypeScript
+let strClass: typeof String = String;
+strClass.name = "String";
+let str: String = new strClass();
+console.log(str.name);
+```
 ## keyof 关键词有什么用？
 ## 类型声明里 「&」和「|」有什么作用？
-&:用以联合类型
-## 下面代码里「date is Date」有什么作用？
+&：用以交叉类型，声明出一个集合类
+|：用以联合类型，声明变量可能为多种类型
+## 类型转换
 ```TypeScript
+let pet: any = new Parent();
+function(pet: any) {
+    if ((<Fish>pet).swim) {
+        (<Fish>pet).swim();
+    } else {
+        (<Bird>pet).fly();
+    }
+}
+```
+## 下面代码里「date is Date」有什么作用？
+类型断言,用以告知函数是一个类型判断函数
+```TypeScript
+//  返回一个类型断言
 function isDate(date: any): date is Date {
   if (!date) return false;
   return Object.prototype.toString.call(date) === '[object Date]';
 }
 ```
+> https://www.cnblogs.com/qqandfqr/p/6804214.html
+
 ## tsconfig.json 里 --strictNullChecks 参数的作用是什么？
 ## interface 和 type 声明有什么区别？
-## 如何完善 Calculator 的声明。
+interface是定义接口
+type是类型别名，不会创建出一个类
+typ还可以限制字符串的值,例如：
 ```TypeScript
-interface Calculator {
-    ...
-}
- 
-let calcu: Calculator;
-calcu(2)
-  .multiply(5)
-  .add(1)
-  ```
+type num = "111" | "222" | "333";   //  字符串字面量类型，num只能赋值这三个
+```
+
 ## 「import ... from」、「 import ... = require()」 和 「import(path: string)」有什么区别？
 ## declare 关键字有什么用？
 ## module 关键字有什么用？
 ## 如何处理才能在 TS 中引用 CSS 或者 图片使之不报错？
-## import "./index.scss";
-## import imgPath from "./home.png";
+import "./index.scss";
+import imgPath from "./home.png";
 ## 编写 d.ts 来声明下面的 js 文件
 ```TypeScript
 class Foo {

@@ -1126,6 +1126,8 @@ js操作获取和设置cookie
 typeof(obj) === "string"
 typeof obj === "string"
 obj.constructor === String
+(<String>obj).split !== undefined;
+obj instanceof String
 // 判断变量的类型
 function getType(obj){
 	var str = Object.prototype.toString.call(obj);
