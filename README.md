@@ -1,6 +1,5 @@
 # booturl（路径向导）
 https://gitee.com/jikold 
-https://github.com/dongyanghe
 ### 项目介绍
 [我的processon首页](https://www.processon.com/u/556bcbf6e4b03f9cd579c4bb)，2018年前端最新经典面试题和资源的整合
 

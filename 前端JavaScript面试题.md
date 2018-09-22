@@ -815,16 +815,6 @@ eval是做什么的？
     它的功能是把对应的字符串解析成JS代码并运行；
     应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。
 
-    
-
-JavaScript原型，原型链 ? 有什么特点？
--------------------------
-
-    *  原型对象也是普通的对象，是对象一个自带隐式的 __proto__ 属性，原型也有可能有自己的原型，如果一个原型对象的原型不为null的话，我们就称之为原型链。
-    *  原型链是由一些用来继承和共享属性的对象组成的（有限的）对象链。
-
-
-
 
 事件、IE与火狐的事件机制有什么区别？ 如何阻止冒泡？
 ---------------------------
@@ -1532,11 +1522,12 @@ function bindEvent(){
 function teacher(name){    
   this.name = name;
 }
-  teacher.prototype.sayName = function(){    
-  console.log("name is "+this.name);}
-  var teacher1 = new teacher("xiaoming");
-  teacher1.sayName();
- function student(name){    
+teacher.prototype.sayName = function(){    
+  console.log("name is "+this.name);
+}
+var teacher1 = new teacher("xiaoming");
+teacher1.sayName();
+function student(name){    
     this.name = name;
 }
 student.prototype = new teacher();
@@ -2061,11 +2052,6 @@ Content-Type: text/plain
 Hello World! My payload includes a trailing CRLF.
 ```
 
-## 4、原型链的解释
-
-饿了么面试的时候问到了，用友也问到了。没答好，GG. 
-[图片上传失败...(image-6f0120-1537104121492)]
-
 ## 5、对闭包的理解，实现一个暴露内部变量，而且外部可以访问修改的函数
 
 闭包的作用： 
@@ -2436,8 +2422,6 @@ JSON.stringify(o // => "{a:1,b:2,c:3}"
 
 55、画出盒子模型，要使谷歌浏览器的盒子模型显示得跟IE浏览器一致（让谷歌跟ie一致，不是ie跟谷歌一致），该怎么做？
 
-56、手写JS实现类继承，讲原型链原理，并解释new一个对象的过程都发生了什么
-
 57、Array对象自带的方法，一一列举
 
 58、若干个数字，怎么选出最大的五个
@@ -2531,8 +2515,6 @@ JSON.stringify(o // => "{a:1,b:2,c:3}"
 102、冒泡和捕获，事件流哪三个阶段？
 
 103、实现事件代理
-
-104、原型链
 
 105、继承的两种方法
 
