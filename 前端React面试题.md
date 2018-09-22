@@ -15,39 +15,49 @@
 
 这个问题要考察的是组件的生命周期
 
-一、初始化阶段：
+一、初始化阶段(装载周期)：
 
 getDefaultProps:配置默认的props,也可以用dufaultProps设置组件的默认属性.
 
 getInitialState:初始化state
 
-componentWillMount：组件即将被装载、渲染到页面上,整个生命周期只调用一次，此时可以修改state。
+**componentWillMount**：组件即将装载前，组件将渲染到页面上,整个生命周期只调用一次，此时可以修改state。
 
 render:组件在这里生成虚拟的DOM节点，进行diff算法，更新dom树，此时就不能更改state。
 
-componentDidMount:组件真正在被装载之后
+**componentDidMount**:组件装载后
 
-二、运行中状态：
+二、运行中状态(变更周期)：
 
-componentWillReceiveProps:组件将要接收到属性的时候调用
-
-shouldComponentUpdate:组件接受到新属性或者新状态的时候（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了）
-
-componentWillUpdate:组件即将更新不能修改属性和状态
-
-render:组件重新描绘
-
-componentDidUpdate:组件已经更新
+**componentWillReceiveProps(nextProps)**: 组件接收到下一个属性的时，一次更新中被调用多次。（旧版用来根据 props 来更新 state，或者触发一些回调，如动画或页面跳转等,reactV16.3后建议使用getDerivedStateFromProps）
+***getDerivedStateFromProps***: 需要通过下一个属性获取state时，新版react推出的，只能访问nextProps不能读取this.porps
+**shouldComponentUpdate**:  在组件更新前，（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了）一次更新中可能被调用多次。
+**componentWillUpdate**:  组件即将更新，不能修改属性和状态,此时读取render的dom可能未commit
+render: 组件重新描绘
+***getSnapshotBeforeUpdate(prevProps, prevState)***:  新版react推出的，在最终的render之前被调用，读取到的DOM元素状态是可以保证与 componentDidUpdate中一致的。一般用来判断dom后返回snapshot给componentWillUpdate用以更新state
+**componentDidUpdate(prevProps, prevState, snapshot)**:组件已经更新
 
 三、销毁阶段：
 
-componentWillUnmount:组件即将销毁
+**componentWillUnmount**:组件即将销毁
+
+> https://blog.csdn.net/c_kite/article/details/80303341
 ## react diff算法
 ### diff策略
 * Web UI 中DOM节点跨层级的移动操作特别少，可以忽略不计
 * 拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。
 * 对于同一层级的一组子节点，它们可以通过唯一id进行区分。
 
+把树形结构按照层级分解，只比较同级元素。
+给列表结构的每个单元添加唯一的key属性，方便比较。
+React 只会匹配相同 class（组件名）的 component（这里面的class指的是）
+合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.
+
+选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能。
+
+参考链接：
+
+https//segmentfault.com/a/1190000000606216
 > https://blog.csdn.net/qq_26708777/article/details/78107577?utm_source=copy 
 ## 什么时候在功能组件( Class Component )上使用类组件( Functional Component )？
 如果您的组件具有状态( state )或生命周期方法，请使用 Class 组件。否则，使用功能组件
@@ -101,7 +111,7 @@ keys是什么帮助 React 跟踪哪些项目已更改、添加或从列表中删
 
 而且 keys 不仅使这个过程更有效率，而且没有 keys ，React 不知道哪个本地状态对应于移动中的哪个项目。所以当你 map 的时候，不要忽略了 keys 。
 
-看下面的代码: 如果您在 下创建了一个 React 元素， 的组件定义将如何？
+## 看下面的代码: 如果您在 下创建了一个 React 元素， 的组件定义将如何？
 ```TypeScript
 <Twitter username='tylermcginnis33'>
   {(user) => user === null
@@ -136,7 +146,7 @@ class Twitter extends Component {
       .then((user) => this.setState({user}))
   }
   render () {
-    return this.props.children(this.state.user)
+    return this.props.children(this.state.user) //  
   }
 }
 ```
@@ -144,7 +154,7 @@ class Twitter extends Component {
 
 这种模式的好处是我们已经将我们的父组件与我们的子组件分离了。父组件管理状态，父组件的消费者可以决定以何种方式将从父级接收的参数应用于他们的 UI。
 
-为了演示这一点，我们假设在另一个文件中，我们要渲染一个 Profile 而不是一个 Badge, ，因为我们使用渲染回调模式，所以我们可以轻松地交换 UI ，而不用改变我们对父（Twitter）组件的实现。
+为了演示这一点，我们假设在另一个文件中，我们要渲染一个 Profile 而不是一个 Badge, 因为我们使用渲染回调模式，所以我们可以轻松地交换 UI ，而不用改变我们对父（Twitter）组件的实现。
 ```TypeScript
 <Twitter username='tylermcginnis33'>
   {(user) => user === null
@@ -152,7 +162,7 @@ class Twitter extends Component {
     : <Profile info={user} />}
 </Twitter>
 ```
-受控组件( controlled component )与不受控制的组件( uncontrolled component )有什么区别？
+## 受控组件( controlled component )与不受控制的组件( uncontrolled component )有什么区别？
 React 的很大一部分是这样的想法，即组件负责控制和管理自己的状态。
 
 当我们将 native HTML 表单元素（ input, select, textarea 等）投入到组合中时会发生什么？我们是否应该使用 React 作为“单一的真理来源”，就像我们习惯使用React一样？ 或者我们是否允许表单数据存在 DOM 中，就像我们习惯使用HTML表单元素一样？ 这两个问题是受控（controlled） VS 不受控制（uncontrolled）组件的核心。
@@ -320,22 +330,6 @@ shouldComponentUpdate 这个方法用来判断是否需要调用render方法重�
 
 > https://www.zhihu.com/question/29504639?sort=created
  
-
-## diff算法?
-
-把树形结构按照层级分解，只比较同级元素。
-
-给列表结构的每个单元添加唯一的key属性，方便比较。
-
-React 只会匹配相同 class 的 component（这里面的class指的是组件的名字）
-
-合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.
-
-选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能。
-
-参考链接：
-
-https//segmentfault.com/a/1190000000606216
 
 ## react性能优化方案
 
