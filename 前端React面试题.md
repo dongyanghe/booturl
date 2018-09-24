@@ -1,8 +1,14 @@
 
 ## 当你调用setState的时候，发生了什么事？
-当调用 setState 时，React会做的第一件事情是将传递给 setState 的对象合并到组件的当前状态。这将启动一个称为**和解（reconciliation）**的过程。和解（reconciliation）的最终目标是以最有效的方式，根据这个新的状态来更新UI。 为此，React将构建一个新的 React 元素树（您可以将其视为 UI 的对象表示）。
+当调用 setState 时，React会做的第一件事情是将传递给 setState 的对象合并到组件的当前状态。这将启动一个称为 **和解（reconciliation）**的过程。和解（reconciliation）的最终目标是以最有效的方式，根据这个新的状态来更新UI。 为此，React将构建一个新的 React 元素树（您可以将其视为 UI 的对象表示）。
 一旦有了这个树，为了弄清 UI 如何响应新的状态而改变，React 会将这个新树与上一个元素树相比较（ diff ）。
 通过这样做， React 将会知道发生的确切变化，并且通过了解发生什么变化，只需在绝对必要的情况下进行更新即可最小化 UI 的占用空间。
+## React 的 setState 为何是异步渲染？
+为了防止一次性执行多次setState而带来的渲染性能问题。即，你如果连续不断执行 100 次setState的话，那么 React 是否有必要渲染 100 次？—— 肯定没必要。第一，浏览器会卡死；第二，用户只需要看到最后的结果即可，不用关心前 99 次的过程。
+## vue、react、angularX 如何解析模板？
+第一步是将非结构化的模板字符串，转变成结构化的 JS 对象，**抽象语法树（AST）**。其实就是一个 JS 对象，这样就结构化了。
+第二步，将 AST 转换成一个 render 函数，步骤是先转换为一段函数体的字符串，然后再用new Function(...)生成函数。
+第三部，渲染时执行 render 函数，返回 **虚拟 DOM 对象**，然后执行虚拟 DOM 的 **patch方法**，渲染成真正的 html 。
 
 ## 在 React 当中 Element 和 Component 有何区别？
 简单地说，一个 React element 描述了你想在屏幕上看到什么。换个说法就是，一个 React element 是一些 UI 的对象表示。

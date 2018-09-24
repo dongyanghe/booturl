@@ -45,5 +45,7 @@ https://gitee.com/jikold
 * 设计模式
     > https://blog.csdn.net/mayan_fe/article/details/8572003?utm_source=copy 
     > http://www.cnblogs.com/xianyulaodi/p/5827821.html
+* TypeScript
+    > https://www.jianshu.com/u/4d7dd4c7e51d
 ---
 前端知识点——路径向导
