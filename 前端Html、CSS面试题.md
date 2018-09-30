@@ -1,14 +1,16 @@
-### 1、什么是盒子模型？
+## 1、什么是盒子模型？
 
 在网页中，一个元素占有空间的大小由几个部分构成，其中包括元素的内容（content），元素的内边距（padding），元素的边框（border），元素的外边距（margin）四个部分。这四个部分占有的空间中，有的部分可以显示相应的内容，而有的部分只用来分隔相邻的区域或区域。4个部分一起构成了css中元素的盒模型。
 
-### 2、行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+## html5新标签：
+http://www.cnblogs.com/yuzhongwusan/archive/2011/11/17/2252208.html
+## 2、行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
 
 行内元素：a、b、span、img、input、strong、select、label、em、button、textarea
 块级元素：div、ul、li、dl、dt、dd、p、h1-h6、blockquote
 空元素：即系没有内容的HTML元素，例如：br、meta、hr、link、input、img
 
-### display:none和visibility:hidden的区别？
+## display:none和visibility:hidden的区别？
     display:none  隐藏对应的元素，在文档布局中不再给它分配空间，它各边的元素会合拢，
     就当他从来不存在。
     visibility:hidden  隐藏对应的元素，但是在文档布局中仍保留原来的空间。
@@ -18,24 +20,24 @@
     (2) 页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
     (3) import只在IE5以上才能识别，而link是HTML标签，无兼容问题; 
     (4) link方式的样式的权重 高于@import的权重.
-### Position定位:
+## Position定位:
 绝对定位（**脱离文档流**）：
-Fixed：相对于窗口进行定位；
-Absolute：相对于第一个不是static定位的父元素定位。
+Fixed：相对于窗口进行定位；可以通过z-index进行层次分级。可层叠
+Absolute：相对于第一个不是static定位的父元素定位。可以通过z-index进行层次分级。可层叠
 相对定位（**不脱离文档流**）：
-Relative：相对于**原来的位置**定位。
+Relative：相对于**原来的位置**定位。不可层叠
 没有定位（不能使用top、left、rigth、bottom、z-index）：
 Static：出现在正常流中。
 从父元素继承：
 Inherit
->记：相对自己定位的Relative舍不得离开位置，自然也不愿意脱离文档流
-
+> 记：相对自己定位的Relative舍不得离开位置，自然也不愿意脱离文档流,和float一样也不愿层叠
+> https://blog.csdn.net/fivedoumi/article/details/50850327
 ### position:absolute和float属性的异同  
     A：共同点：
     对内联元素设置`float`和`absolute`属性，可以让元素脱离文档流，并且可以设置其宽高。
     B：不同点：
-    **float仍会占据位置，position会覆盖文档流中的其他元素**。
-
+    **float仍会占据位置，position会覆盖文档流中的其他元素,可层叠**。
+    float使用clear:both，position使用position:static清除
 ### 介绍一下box-sizing属性？
 
 `box-sizing`属性主要用来控制元素的盒模型的解析模式。默认值是`content-box`。
@@ -277,14 +279,18 @@ onload 事件的触发，表示页面包含图片等文件在内的所有元素�
 ##  正则表达式
 
 ###  1、写一个function，清除字符串前后的空格。（兼容所有浏览器）
-
-<pre style="box-sizing: border-box; outline: 0px; padding: 8px; margin: 0px 0px 24px; position: relative; white-space: pre-wrap; overflow-wrap: break-word; overflow-x: auto; font-family: &quot;Courier New&quot;; font-size: 12px; line-height: 22px; color: rgb(0, 0, 0); word-break: break-all;">function trim(str) { if (str && typeof str === "string") { return str.replace(/(^\s*)|(\s*)$/g,""); //去除前后空白符
+```function trim(str) { 
+    if (str && typeof str === "string") { 
+        return str.replace(/(^\s*)|(\s*)$/g,""); //去除前后空白符
  }
-}</pre>
+}
+```
 
 ###  2、使用正则表达式验证邮箱格式
-
-<pre style="box-sizing: border-box; outline: 0px; padding: 8px; margin: 0px 0px 24px; position: relative; white-space: pre-wrap; overflow-wrap: break-word; overflow-x: auto; font-family: &quot;Courier New&quot;; font-size: 12px; line-height: 22px; color: rgb(0, 0, 0); word-break: break-all;"> var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/; var email = "example@qq.com";
- console.log(reg.test(email)); // true </pre>
+```
+var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/; 
+var email = "example@qq.com";
+ console.log(reg.test(email)); // true
+```
 
 [回到顶部](http://www.cnblogs.com/#_labelTop)

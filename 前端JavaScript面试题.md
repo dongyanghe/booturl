@@ -1,14 +1,14 @@
 ## 原型链
-    function Fn() {}// Fn为构造函数
-    var f1 = new Fn();//f1是Fn构造函数创建出来的对象
-    构造函数的prototype属性值就是对象原型。（Fn.prototype就是对象的原型）
-    构造函数的prototype属性值的类型就是对象  typeof Fn.prototype===object. 
-    对象原型中的constructor属性指向构造函数 （Fn.prototype.constructor===Fn)
-    对象的__proto__属性值就是对象的原型。（f1.__proto__就是对象原型）
-    Fn.prototype===f1.__proto__ 其实它们两个就是同一个对象---对象的原型。
-    所有Fn.prototype.__proto__===Object.prototype
-    typeof Object.prototype ===object。
-    Object.prototype.__proto__===null。
+* function Fn() {}// Fn为构造函数
+* var f1 = new Fn();//f1是Fn构造函数创建出来的对象
+* 构造函数的prototype属性值就是对象原型。（Fn.prototype就是对象的原型）
+* 构造函数的prototype属性值的类型就是对象  typeof Fn.prototype===object. 
+* 对象原型中的constructor属性指向构造函数 （Fn.prototype.constructor===Fn)
+* 对象的__proto__属性值就是对象的原型。（f1.__proto__就是对象原型）
+* Fn.prototype===f1.__proto__ 其实它们两个就是同一个对象---对象的原型。
+* 所有Fn.prototype.__proto__===Object.prototype
+* typeof Object.prototype ===object。
+* Object.prototype.__proto__===null。
 
     我讨论原型就是指的对象与原型对象之间的关系。所以原型链也称之为对象链。
     有了以上的基础知识，下面的原型链图你就可以看明白了。
@@ -1293,7 +1293,7 @@ console.log(maxInNumbers); // 458
 相同点：JavaScript 中 typeof 和 instanceof 常用来判断一个变量是否为空，或者是什么类型的。
 typeof的定义和用法：返回值是一个字符串，用来说明变量的数据类型。
 细节：
-1. typeof 一般只能返回如下几个结果：number,boolean,string,function,object,undefined。
+1. typeof 一般只能返回如下几个结果：number,boolean,string,object,**undefined,function**。
 2. typeof 来获取一个变量是否存在，如 if(typeof a!="undefined"){alert("ok")}，而不要去使用 if(a) 因为如果 a 未声明（null不会报错）则会出错。
 3. 对于 Array,Null 等特殊对象使用 typeof 一律返回 object
 Instanceof定义和用法：instanceof 用于判断一个变量是否属于某个对象的实例。
@@ -2128,7 +2128,8 @@ OSI：物理层-数据链路层-网络层-传输层-会话层-表现层-应用�
   hello:function(){alert('hello');}
  });
 ```
-
+## setTimeout的方式(注册事件)
+有两个参数，第一个参数是函数，第二参数是时间值。调用setTimeout时，把函数参数，放到事件队列中。等主程序运行完，再调用。
 ## 13、在jquery方法和原型上面添加方法的区别和实现，以及jquery对象的实现
 
 参考上一个问题答案~
