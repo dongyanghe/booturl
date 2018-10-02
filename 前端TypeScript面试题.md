@@ -88,7 +88,7 @@ obj.c = null;
 ## readonly 和 const 有什么区别？
 readonly是只读不能写，const是地址不能变，比如const声明的数组值就可以变，但不能对整个数组重新赋值
 
-## 什么是 class mixins, 如何实现？
+## 什么是 class mixins类型混入, 如何实现？
 主要是通过implements和属性拷贝合并多个类，拷贝函数如下：
 ```TypeScript
 function applyMixins(mergeClass: any, baseClassList: any[]) {
