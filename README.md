@@ -36,6 +36,7 @@ https://gitee.com/jikold
     > http://web.jobbole.com/95078/
     > https://github.com/BearD01001/front-end-QA-to-interview
     > https://blog.csdn.net/zxf13598202302/article/details/53517871
+    > https://blog.csdn.net/qq_25186543/article/details/78456984?utm_source=copy 
 * Angular
     > https://www.cnblogs.com/mfmdaoyou/p/7389012.html
 * React

@@ -23,6 +23,59 @@
 所以，这里要考察的是原型如何在实际的框架和库中去使用。对于这个问题，如果你没有亲自写过框架和库，且对原型不是很熟悉，那么我建议你看一下 jQuery zepto 中是如何使用原型的。这也算是站在巨人的肩膀上吧，毕竟都是如此优秀的库。
 
 jQuery 的资料自己上网去找找吧，给大家推荐一个免费的讲解 zepto 原型的视频资料 《zepto设计和源码分析》。
+## js中函数参数值传递和引用(地址)传递
+### 参数是传值参数
+```TypeScript
+var foo=1;
+(function (foo) {
+    console.log(foo);
+    foo=3;
+    var foo=2;
+    console.log(foo);
+})(foo);
+console.log(foo);
+```
+结果:1 2 1
+### 参数是引用参数
+```TypeScript
+var foo={n:1};
+(function (foo) {
+    console.log(foo.n);
+    foo.n=3;
+    var foo={n:2};
+    console.log(foo.n);
+})(foo);
+console.log(foo.n);
+```
+结果: 1 2 3
+### 数组如果直接取值是值传递
+```TypeScript
+var list = [1, 2, 3];
+function a(item) {
+ item[0] ++;
+};
+a(list);
+console.log(list); // [ 2, 2, 3 ]
+
+var list = [1, 2, 3];
+function a(val) {
+ val ++;
+};
+a(list[0]);
+console.log(list); // [ 1, 2, 3 ]
+```
+解释:
+```TypeScript
+var foo={n:"我是形参或全局变量"};
+(function (foo) {
+    console.log(foo.n);
+    foo.n="我改变了参数和全局变量";
+    var foo={n:"我是局部变量"};
+    console.log(foo.n);
+})(foo);
+console.log(foo.n);
+```
+> https://www.cnblogs.com/refe/p/5101744.html
 
 ## 目前 JS 对于异步的解决方案有哪些？
 异步是 JS 永恒的话题，自动 web 2.0 有了 Ajax 开始，到现在 nodejs 盛行，人们就一直没有停止对异步的讨论。大家有没有考虑过为何异步这么受欢迎？—— 因为异步和业务场景的结合实在太紧密了。在复杂的业务场景中，你要能一眼就识别出来哪些是异步，而且要找到最佳的解决方案，否则这里就是一个坑。
@@ -601,8 +654,20 @@ ajax过程
     (6)使用JavaScript和DOM实现局部刷新.
 
 详情：[JavaScript学习总结（七）Ajax和Http状态字][10]
+## NaN 
 
-异步加载和延迟加载
+NaN 属性代表一个“不是数字”的值。这个特殊的值是因为运算不能执行而导致的，不能执行的原因要么是因为其中的运算对象之一非数字（例如， "abc"/ 4），要么是因为运算的结果非数字（例如，除数为零）。
+
+console.log(typeof NaN === "number");  // logs "true"
+
+NaN 和任何东西比较——甚至是它自己本身！——结果是false：
+console.log(NaN === NaN);  // logs "false"
+
+一种半可靠的方法来测试一个数字是否等于 NaN，是使用内置函数 **isNaN()**，但即使使用 isNaN() 依然并非是一个完美的解决方案。
+
+一个更好的解决办法是 **使用 value !== value**，如果值等于NaN，只会产生true。另外，ES6提供了一个新的 Number.isNaN() 函数，这是一个不同的函数，并且比老的全局 isNaN() 函数更可靠。
+
+## 异步加载和延迟加载
 ---------
 
     1.异步加载的方案： 动态插入script标签
@@ -2137,6 +2202,16 @@ OSI：物理层-数据链路层-网络层-传输层-会话层-表现层-应用�
 ```
 ## setTimeout的方式(注册事件)
 有两个参数，第一个参数是函数，第二参数是时间值。调用setTimeout时，把函数参数，放到事件队列中。等主程序运行完，再调用。
+利用这个原理可以延迟处理大计算的代码，防止堆栈溢出:
+```TypeScript
+var list = readHugeList();
+var nextListItem = function() {   
+    var item = list.pop();    
+    if (item) {        // process the list item...
+        setTimeout( nextListItem, 0);
+    }
+};
+```
 ## 13、在jquery方法和原型上面添加方法的区别和实现，以及jquery对象的实现
 
 参考上一个问题答案~
