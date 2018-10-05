@@ -44,6 +44,7 @@ https://gitee.com/jikold
     > https://blog.csdn.net/sinat_17775997/article/details/69938720?utm_source=copy 
     > https://www.imooc.com/article/23647?block_id=tuijian_wz
     > https://blog.csdn.net/u013510838/article/details/60744715?utm_source=copy 
+    > https://www.zhihu.com/question/60548673/answer/177682784
 * 设计模式
     > https://blog.csdn.net/mayan_fe/article/details/8572003?utm_source=copy 
     > http://www.cnblogs.com/xianyulaodi/p/5827821.html

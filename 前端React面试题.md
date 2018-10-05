@@ -40,13 +40,13 @@ render:组件在这里生成虚拟的DOM节点，进行diff算法，更新dom树
 **shouldComponentUpdate**:  在组件更新前，（可以返回false，接收数据后不更新，阻止render调用，后面的函数不会被继续执行了）一次更新中可能被调用多次。
 **componentWillUpdate**:  组件即将更新，不能修改属性和状态,此时读取render的dom可能未commit
 render: 组件重新描绘
-***getSnapshotBeforeUpdate(prevProps, prevState)***:  新版react推出的，在最终的render之前被调用，读取到的DOM元素状态是可以保证与 componentDidUpdate中一致的。一般用来判断dom后返回snapshot给componentWillUpdate用以更新state
+***getSnapshotBeforeUpdate(prevProps, prevState)***:  新版react推出的，在最终的render执行完成之前被调用，读取到的DOM元素状态是可以保证与 componentDidUpdate中一致的。一般用来判断dom后返回snapshot给componentWillUpdate用以更新state
 **componentDidUpdate(prevProps, prevState, snapshot)**:组件已经更新
-
 三、销毁阶段：
-
 **componentWillUnmount**:组件即将销毁
-> 记：获取数据的是是get开头，控制组件更新的是should开头，以props和component为线索的是component,props/component的之前是Will之后是Did
+
+> 记：获取数据的是是get开头，控制组件更新的是should开头，以props和component为线索的是component,props/component的之前是Will之后是Did；
+> 记：初始化时易mount结尾，运行时先是props处理之后都是update
 > https://blog.csdn.net/c_kite/article/details/80303341
 ## react diff算法
 ### diff策略
@@ -228,7 +228,7 @@ class UnControlledForm extends Component {
 AJAX 请求应该在 componentDidMount 生命周期事件中。 有几个原因:
 
 Fiber，是下一次实施React的和解算法，将有能力根据需要启动和停止渲染，以获得性能优势。其中一个取舍之一是 componentWillMount ，而在其他的生命周期事件中出发 AJAX 请求，将是具有 “非确定性的”。 这意味着 React 可以在需要时感觉到不同的时间开始调用 componentWillMount。这显然是AJAX请求的不好的方式。
--您不能保证在组件挂载之前，AJAX请求将无法 resolve。如果这样做，那意味着你会尝试在一个未挂载的组件上设置 StState，这不仅不会起作用，反而会对你大喊大叫。 在 componentDidMount 中执行 AJAX 将保证至少有一个要更新的组件。
+-您不能保证在组件挂载之前，AJAX请求将无法 resolve。如果这样做，那意味着你会尝试在一个未挂载的组件上设置 SetState，这不仅不会起作用，反而会对你大喊大叫。 在 componentDidMount 中执行 AJAX 将保证至少有一个要更新的组件。
 
 ## shouldComponentUpdate 应该做什么，为什么它很重要？
 上面我们讨论了 reconciliation ，什么是 React 在 setState 被调用时所做的。在生命周期方法 shouldComponentUpdate 中，允许我们选择退出某些组件（和他们的子组件）的 reconciliation 过程。
@@ -237,7 +237,7 @@ Fiber，是下一次实施React的和解算法，将有能力根据需要启动�
 
 如上所述，“和解（ reconciliation ）的最终目标是以最有效的方式，根据新的状态更新用户界面”。如果我们知道我们的用户界面（UI）的某一部分不会改变，那么没有理由让 React 很麻烦地试图去弄清楚它是否应该渲染。通过从 shouldComponentUpdate 返回 false，React 将假定当前组件及其所有子组件将保持与当前组件相同。
 
-您如何告诉React 构建（build）生产模式，该做什么？
+## 您如何告诉React 构建（build）生产模式，该做什么？
 通常，您将使用Webpack的 DefinePlugin 方法将 NODE_ENV 设置为 production。这将剥离像 propType 验证和额外的警告。除此之外，还有一个好主意，可以减少你的代码，因为React使用 Uglify 的 dead-code 来消除开发代码和注释，这将大大减少你的包的大小。
 
 ## 为什么要使用 React.Children.map（props.children，（）=>） 而不是 props.children.map（（）=>）
@@ -391,9 +391,3 @@ React是单向数据流，父组件自接在子组件节点上绑定属性,子�
 ##  用 react 来实现一个可视化编辑器的引擎，怎么设计，怎么抽象与 model 的交互，再引入 redux 呢，怎么支持第三方组件热插拔
 
 ##   用 react 和 redux 模拟多人协作的 Todo，node 作为后端，怎么设计
-
-
-作者：流形
-链接：https://www.zhihu.com/question/60548673/answer/177682784
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

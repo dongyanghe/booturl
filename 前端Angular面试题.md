@@ -7,7 +7,7 @@
 *   ngOnChanges：当 Angular（重新）**设置数据绑定输入属性时**响应。 该方法接受当前和上一属性值的 SimpleChanges 对象当被绑定的输入属性的值发生变化时调用，首次调用一定会发生在 ngOnInit() 之前。
 *   ngOnInit：在 Angular **第一次显示数据绑定和设置指令/组件的输入属性之后**，初始化指令/组件。在第一轮 ngOnChanges() 完成之后调用，只调用一次。
 *   ngDoCheck：检測并在Angular上下文发生变化时执行。在每个 Angular 变更检测周期中调用，**ngOnChanges() 和 ngOnInit() 之后**。
-*   ngOnDestroy：在Angular销毁指令/组件**之前**清除。可在这里取消订阅可观察的对象并脱离事件处理程序，以避免内存泄漏。
+*   ngOnDestroy：在Angular销毁指令/组件**之前**清除。可在这里取消订阅可观察的对象并脱离事件处理程序，以避免内存泄漏。或者做离页提示
 ### 组件特有（模版的生命周期）：
 *   ngAfterContentInit：组件内容已初始化完毕后，**第一次 ngDoCheck() 之后调用**，只调用一次。
 *   ngAfterContentChecked：在Angular检查投影到其视图中的绑定的外部内容之后。**ngAfterContentInit() 和每次 ngDoCheck() 之后**调用
