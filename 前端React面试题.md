@@ -46,7 +46,7 @@ render: 组件重新描绘
 三、销毁阶段：
 
 **componentWillUnmount**:组件即将销毁
-
+> 记：获取数据的是是get开头，控制组件更新的是should开头，以props和component为线索的是component,props/component的之前是Will之后是Did
 > https://blog.csdn.net/c_kite/article/details/80303341
 ## react diff算法
 ### diff策略

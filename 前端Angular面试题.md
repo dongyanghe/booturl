@@ -13,6 +13,23 @@
 *   ngAfterContentChecked：在Angular检查投影到其视图中的绑定的外部内容之后。**ngAfterContentInit() 和每次 ngDoCheck() 之后**调用
 *   ngAfterViewInit：Angular创建组件的视图后。**第一次 ngAfterContentChecked() 之后**调用，只调用一次。
 *   ngAfterViewChecked：在Angular检查组件视图的绑定之后。ngAfterViewInit() 和**每次 ngAfterContentChecked() 之后**调用。
+## RXJS
+### v6版最新变化：
+1. 导入方式的变化
+原来的这种导入方式：
+import { Observable } from "rxjs/Observable";
+import { concat } from "rxjs/observable/concat";
+import { map } from "rxjs/operators/map";
+import { take } from "rxjs/operators/take";
+
+被如下导入方式所替代：
+import { concat, Observable } from "rxjs";
+import { map, take } from "rxjs/operators";
+2. 具体操作符的使用变化
+原来使用方式是：
+data$.map(x => x + 1)
+现在使用方式变为：
+data$.pipe(map(x => x + 1))
 
 ##  使用AngularX，和使用Angular 1相比。有什么优势？
 1.  AngularX是一个平台，不仅是一种语言
@@ -158,14 +175,14 @@ Codelyzer执行在tslint的顶部，其编码约定通常在tslint.json文件里
 
 ##  优化AngularX
 但一般来说，在优化AngularX应用程序时。我会考虑下面几点：
-1.  使用AOT编译。
-2.  确保应用程序已经经过了捆绑。uglify和tree shaking。
-3.  确保应用程序不存在不必要的import语句。
-4.  确保应用中已经移除了不使用的第三方库。
-5.  package.json分开dependencies 和dev-dependencies的包配置。
-6.  假设应用程序较大时，我会考虑延迟载入而不是全然捆绑的应用程序。
-7.  使用gzip压缩传输。
-
+1. 使用AOT编译。
+2. 确保应用程序已经经过了捆绑。uglify和tree shaking。
+3. 确保应用程序不存在不必要的import语句。
+4. 确保应用中已经移除了不使用的第三方库。
+5. package.json分开dependencies 和dev-dependencies的包配置。
+6. 假设应用程序较大时，我会考虑延迟载入而不是全然捆绑的应用程序。
+7. 使用gzip压缩传输。
+8. 生命周期函数里面不要写太久的计算代码
 ## Shadow DOM
 * 使用document.querySelector("#div").createShadowRoot()创建，使用.shadowRoot()读取
 * html由js显示，不会显示body里面的节点
@@ -178,9 +195,7 @@ Codelyzer执行在tslint的顶部，其编码约定通常在tslint.json文件里
 
 ## AOT编译 优缺点
 AOT编译代表的是Ahead Of Time编译，当中Angular编译器在构建时，会将Angular组件和模板编译为本机JavaScript和HTML。编译好的HTML和JavaScript将会部署到Webserver，以便浏览器能够节省编译和渲染时间。
-
-**优点：**
-
+### 优点：
 1.  更快的下载：由于应用程序已经编译。很多Angular编译器相关库就不再须要捆绑，应用程序包变得更小，所以该应用程序能够更快地下载。
 2.  更少的Http请求数：假设应用程序没有捆绑来支持延迟载入（或不论什么原因），对于每一个关联的HTML和CSS，都会有一个单独的server请求。可是预编译的应用程序会将全部模板和样式与组件对齐，因此到server的Http请求数量会更少。
 3.  更快的渲染：假设应用程序不是AOT编译，那么应用程序全然载入时，编译过程会发生在浏览器中。这须要等待下载全部必需的组件。然后等待编译器花费时间来编译应用程序。
@@ -188,7 +203,7 @@ AOT编译代表的是Ahead Of Time编译，当中Angular编译器在构建时，
     使用AOT编译，就能实现优化。 
 4.  在构建时检測错误：由于预先编译，能够检測到很多编译时错误，能够为应用程序提供更好的稳定性。
 
-**缺点：**
+### 缺点：
 
 1.  仅适用于HTML和CSS，其他文件类型须要前面的构建步骤
 2.  没有watch模式。必须手动完毕（bin / ngc-watch.js）并编译全部文件
