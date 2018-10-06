@@ -1,5 +1,44 @@
-## AngularX、react的dom渲染和数据绑定机制
-
+## AngularX、Angular1、react的dom渲染和数据绑定机制
+### AngularJS1:
+ 采用“脏值检测”的方式，数据发生变更后，对于所有的数据和视图的绑定关系进行一次检测，识别是否有数据发生了改变，有变化进行处理，可能进一步引发其他数据的改变，所以这个过程可能会循环几次，一直到不再有数据变化发生后，将变更的数据发送到视图，更新页面展现。如果是手动对 ViewModel 的数据进行变更，为确保变更同步到视图，需要手动触发一次“脏值检测”。
+### angularX
+angularX的双向绑定就是数据绑定+事件绑定，模板语法是 [()] 。
+引入ZoneJS对异步事件进行监听，有数据改动后触发angular的脏检测机制，对新旧数据进行对比，每个组件都有它的检测器ChangeDetector，对节点从上到下进行深层次的遍历检测。
+#### 提供两种检测策略：
+OnPush策略：我知道我没变，别查我。
+手动控制刷新：我变了，只查我。
+```TypeScript
+export enum ChangeDetectionStrategy { 
+  OnPush, // 表示变化检测对象的状态为`CheckOnce` 
+  Default, // 表示变化检测对象的状态为`CheckAlways`
+}
+@Component({
+  template: `
+    <h2>{{vData.name}}</h2>
+    <span>{{vData.email}}</span>
+  `,
+  // 在只接受输入的子组件中采用onPush策略。
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+```
+#### 手动控制：
+变化检测对象引用ChangeDetectorRef给开发者提供的方法有以下几种：
+* markForCheck()：将检查组件的所有父组件所有子组件，即使设置了变化检测策略为onPush。
+* detach()：将变化检测对象脱离检测对象树，不再进行变化检查；结合detectChanges可实现局部变化检测。（采用onPush策略之后的组件detach()无效）
+* detectChanges()：将检测该组件及其子组件，结合detach可实现局部检测。
+* checkNoChanges(): 检测该组件及其子组件，如果有变化存在则报错，用于开发阶段二次验证变化已经完成。
+* reattach()：将脱离的变化检测对象重新链接到变化检测树上。
+#### 与angular1差别：
+AngularX与Angularjs都采用变化检测机制，前者优于后者主要体现在：
+* 单项数据流动
+* 以组件为单位维度独立进行检测
+* 生产环境只进行一次检查
+* 可自定义的变化检测策略：Default和onPush
+* 可自定义的变化检测操作：markForcheck()、detectChanges()、detach()、reattach()、checkNoChanges()
+* 代码实现上的优化，据说采用了VM friendly的代码。
+* 
+> https://blog.csdn.net/try_try_try/article/details/80111985
+### react16
 
 ## AngularX生命周期
 指令生命周期由**@angular/core**管理的,通过继承得到hook方法，构造函数在全部生命周期事件之前执行。
@@ -275,15 +314,15 @@ ionic build --prod
 * Angular 指令会根据你提供的数据绑定信息（ngModel 等指令）替你创建表单控件对象。Angular 会自动更新这个可变的数据模型。
 ### 表单校验：
   
-## 模版驱动表单
+## 模版驱动表单：
 
-## 服务与依赖注入
+## 服务与依赖注入：
 
-## 指令
+## 指令：
 
-## 管道
+## 管道：
 
-## 模块
+## 模块：
 这是一个典型的模块声明：
 ```TypeScript
 import { NgModule} from '@angular/core';

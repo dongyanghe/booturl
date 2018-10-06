@@ -102,7 +102,7 @@ function CustomForm ({handleSubmit}) {
 }
 ```
 ## React 中的keys是什么，为什么它们很重要？
-keys是什么帮助 React 跟踪哪些项目已更改、添加或从列表中删除。
+keys是什么帮助 React 跟踪哪些项目已更改、添加或从列表中删除,最小化节点单位。
 ```TypeScript
   return (
     <ul>
