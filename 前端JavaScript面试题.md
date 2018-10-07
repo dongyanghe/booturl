@@ -368,7 +368,12 @@ HTML与XHTML——二者有什么区别
           getElementsByName()    //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
     
           getElementById()    //通过元素Id，唯一性
-
+## dom操作优化
+* 批量增加时尽量使用修改innerHTML（销毁重新创建）的方式而不是用appendChild的方式，并且使用array.join(‘’)拼接；
+* 单节点新增到正在变化的父节点时应使用append;
+* 单个大节点创建后应先append后修改，不然内存会常驻
+* 对节点读写分开，不要边读边写
+* 删除节点应先移除事件监听
 ### html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
 
     * HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
@@ -1877,7 +1882,18 @@ $("table").find("#info").delegate("td","click",function(){/*显示更多信息*/
 （1）XSS（Cross-Site Scripting，跨站脚本攻击）：指通过存在安全漏洞的Web网站注册用户的浏览器内运行非法的HTML标签或者JavaScript进行的一种攻击。
 （2）SQL注入攻击
 （3）CSRF（Cross-Site Request Forgeries，跨站点请求伪造）：指攻击者通过设置好的陷阱，强制对已完成的认证用户进行非预期的个人信息或设定信息等某些状态更新。
-
+## Get和post的区别？
+都是TCP请求，post发送的是两次请求，第一次返回100状态后才会再发送（火狐除外）
+GET在浏览器回退时是无害的，而POST会再次提交请求。
+GET产生的URL地址可以被Bookmark，而POST不可以。
+GET请求会被浏览器主动cache，而POST不会，除非手动设置。
+GET请求只能进行url编码，而POST支持多种编码方式。
+GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。
+GET请求在URL中传送的参数是有长度限制的，而POST么有。
+对参数的数据类型，GET只接受ASCII字符，而POST没有限制。
+GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。
+GET参数通过URL传递，POST放在Request body中。
+145、Post一个file的时候file放在哪的？
 ###  4、web前端开发，如何提高页面性能优化？
 
 #### 内容方面：
@@ -2591,9 +2607,7 @@ JSON.stringify(o // => "{a:1,b:2,c:3}"
 
 139、对象中key-value的value怎么再放一个对象？
 
-140、Get和post的区别？
 
-145、Post一个file的时候file放在哪的？
 
 146、说说你对组件的理解
 
