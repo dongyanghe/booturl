@@ -1,7 +1,121 @@
+## web前端开发，如何提高页面性能优化？
+
+#### 内容方面：
+
+1.减少 HTTP 请求 (Make Fewer HTTP Requests)
+
+2.减少 DOM 元素数量 (Reduce the Number of DOM Elements)
+
+3.使得 Ajax 可缓存 (Make Ajax Cacheable)
+
+#### 针对CSS：
+
+1.把 CSS 放到代码页上端 (Put Stylesheets at the Top)
+
+2.从页面中剥离 JavaScript 与 CSS (Make JavaScript and CSS External)
+
+3.精简 JavaScript 与 CSS (Minify JavaScript and CSS)
+
+4.避免 CSS 表达式 (Avoid CSS Expressions)
+
+#### 针对JavaScript ：
+
+1\. 脚本放到 HTML 代码页底部 (Put Scripts at the Bottom)
+
+2\. 从页面中剥离 JavaScript 与 CSS (Make JavaScript and CSS External)
+
+3\. 精简 JavaScript 与 CSS (Minify JavaScript and CSS)
+
+4\. 移除重复脚本 (Remove Duplicate Scripts)
+
+#### 面向图片(Image)：
+
+1.优化图片
+
+2 不要在 HTML 中使用缩放图片
+
+3 使用恰当的图片格式
+
+4 使用 CSS Sprites 技巧对图片优化
+
+### 5、前端开发中，如何优化图像？图像格式的区别？
+
+#### 优化图像：
+
+1、不用图片，尽量用css3代替。 比如说要实现修饰效果，如半透明、边框、圆角、阴影、渐变等，在当前主流浏览器中都可以用CSS达成。
+
+2、 使用矢量图SVG替代位图。对于绝大多数图案、图标等，矢量图更小，且可缩放而无需生成多套图。现在主流浏览器都支持SVG了，所以可放心使用！
+
+3.、使用恰当的图片格式。我们常见的图片格式有JPEG、GIF、PNG。
+
+基本上，内容图片多为照片之类的，适用于JPEG。
+
+而修饰图片通常更适合用无损压缩的PNG。
+
+GIF基本上除了GIF动画外不要使用。且动画的话，也更建议用video元素和视频格式，或用SVG动画取代。
+
+4、按照HTTP协议设置合理的缓存。
+
+5、使用字体图标webfont、CSS Sprites等。
+
+6、用CSS或JavaScript实现预加载。
+
+7、WebP图片格式能给前端带来的优化。WebP支持无损、有损压缩，动态、静态图片，压缩比率优于GIF、JPEG、JPEG2000、PG等格式，非常适合用于网络等图片传输。
+
+####  图像格式的区别：
+
+矢量图：图标字体，如 font-awesome；svg 
+
+位图：gif,jpg(jpeg),png
+
+区别：
+
+　　1、gif:是是一种无损，8位图片格式。具有支持动画，索引透明，压缩等特性。适用于做色彩简单(色调少)的图片，如logo,各种小图标icons等。
+
+　　2、JPEG格式是一种大小与质量相平衡的压缩图片格式。适用于允许轻微失真的色彩丰富的照片，不适合做色彩简单(色调少)的图片，如logo,各种小图标icons等。
+
+　　3、png:PNG可以细分为三种格式:PNG8，PNG24，PNG32。后面的数字代表这种PNG格式最多可以索引和存储的颜色值。
+
+关于透明：PNG8支持索引透明和alpha透明;PNG24不支持透明;而PNG32在24位的PNG基础上增加了8位（256阶）的alpha通道透明;
+
+优缺点：
+
+　　1、能在保证最不失真的情况下尽可能压缩图像文件的大小。
+
+　　2、对于需要高保真的较复杂的图像，PNG虽然能无损压缩，但图片文件较大，不适合应用在Web页面上。 
+
+## 21、使用css实现一个三角形
+
+利用border去画~ 
+先看一下border的布局，如图： 
+[图片上传失败...(image-d88b57-1537104121491)]
+
+所以三角形： 
+1.设置宽度、高度为0 
+[图片上传失败...(image-37a8f2-1537104121491)]
+
+2.不设置border-top 
+[图片上传失败...(image-1d56cc-1537104121491)]
+
+
+3.设置左右border颜色为transparent–透明 
+[图片上传中...(image-238656-1537104121491-0)]
+
+### 6、浏览器是如何渲染页面的？
+
+#### 渲染的流程如下：
+
+1.解析HTML文件，创建DOM树。
+自上而下，遇到任何样式（link、style）与脚本（script）都会 **阻塞（外部样式不阻塞后续外部脚本的加载）**。
+2.解析CSS。优先级：浏览器默认设置<用户设置<外部样式<内联样式<HTML中的style样式；
+3.将CSS与DOM合并，构建渲染树（Render Tree）
+4.布局和绘制，重绘（repaint）和重排（reflow）
 ## 1、什么是盒子模型？
 
-在网页中，一个元素占有空间的大小由几个部分构成，其中包括元素的内容（content），元素的内边距（padding），元素的边框（border），元素的外边距（margin）四个部分。这四个部分占有的空间中，有的部分可以显示相应的内容，而有的部分只用来分隔相邻的区域或区域。4个部分一起构成了css中元素的盒模型。
-
+在网页中，一个元素占有空间的大小由几个部分构成，其中包括元素的内容（content），元素的内边距（padding），元素的边框（border），元素的外边距（margin）**四个部分**。这四个部分占有的空间中，有的部分可以显示相应的内容，而有的部分只用来分隔相邻的区域或区域。4个部分一起构成了css中元素的盒模型。
+### 介绍一下box-sizing属性？
+* content-box  是默认值。如果你设置一个元素的宽为100px，那么这个元素的内容区会有100px宽，并且任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中。
+* border-box 告诉浏览器去理解你设置的边框和内边距的值是包含在width内的。也就是说，如果你将一个元素的width设为100px,那么这100px会包含其它的border和padding，内容区的实际宽度会是width减去border + padding的计算值。大多数情况下这使得我们更容易的去设定一个元素的宽高。
 ## html5新标签：
 http://www.cnblogs.com/yuzhongwusan/archive/2011/11/17/2252208.html
 ## 2、行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
@@ -38,14 +152,13 @@ Inherit
     B：不同点：
     **float仍会占据位置，position会覆盖文档流中的其他元素,可层叠**。
     float使用clear:both，position使用position:static清除
-### 介绍一下box-sizing属性？
 
-`box-sizing`属性主要用来控制元素的盒模型的解析模式。默认值是`content-box`。
-
-- `content-box`：让元素维持W3C的标准盒模型。元素的宽度/高度由border + padding + content的宽度/高度决定，**设置width/height属性指的是content部分的宽/高**
-
-- `border-box`：让元素维持IE传统盒模型（IE6以下版本和IE6~7的怪异模式）。**设置width/height属性指的是border + padding + content*
-
+## 清除浮动
+* clear:both
+* position使用position:static
+* display:table
+* overflow:auto
+* 全部一起浮动。。。
 ### CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？
    
     1.id选择器（ # myid）
@@ -116,47 +229,12 @@ CSS3新增伪类举例：
     CSS Sprites其实就是把网页中一些背景图片整合到一张图片文件中，再利用CSS的“background-image”，“background- repeat”，“background-position”的组合进行背景定位，background-position可以用数字能精确的定位出背景图片的位置。这样可以减少很多图片请求的开销，因为请求耗时比较长；请求虽然可以并发，但是也有限制，一般浏览器都是6个。对于未来而言，就不需要这样做了，因为有了`http2`。
 
 
-### 3、CSS实现垂直水平居中
-
-一道经典的问题，实现方法有很多种，以下是其中一种实现：
-HTML结构：
-```
-<div class="wrapper">
-     <div class="content"></div>
-</div>
-```
-
-CSS：
-```
-.wrapper {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    border: 1px solid red; 
- }
-.content{
-    position: absolute;
-    width: 200px;
-    height: 200px; /*top、bottom、left和right 均设置为0*/ top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0; 
-    /*margin设置为auto*/ 
-    margin:auto;
-    border: 1px solid green;    
-} 
-```
-
-效果如下：
-
-![image](http://upload-images.jianshu.io/upload_images/5138592-ad027661da040b57.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 4、简述一下src与href的区别
 
 href 是指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的**链接**，用于超链接。
 
 src是指向**外部资源的位置**，指向的内容将会嵌入到文档中当前标签所在位置；在请求src资源时会将其指向的资源下载并应用到文档内，例如js脚本，img图片和frame等元素。
-
 当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部。
 
 ### 5、简述同步和异步的区别
@@ -273,24 +351,43 @@ AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。Ajax 
 ready 事件的触发，表示文档结构已经加载完成（不包含图片等非文字媒体文件）。
 
 onload 事件的触发，表示页面包含图片等文件在内的所有元素都加载完成。
-
-[回到顶部](http://www.cnblogs.com/#_labelTop)
-
-##  正则表达式
-
-###  1、写一个function，清除字符串前后的空格。（兼容所有浏览器）
-```function trim(str) { 
-    if (str && typeof str === "string") { 
-        return str.replace(/(^\s*)|(\s*)$/g,""); //去除前后空白符
+## display属性的Flex布局
+> http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+### 3、CSS实现垂直水平居中
+```html
+<div class="wrapper">
+     <div class="content"></div>
+</div>
+```
+```css
+.wrapper {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    border: 1px solid red; 
  }
-}
+.content{
+    position: absolute;
+    width: 200px;
+    height: 200px; /*top、bottom、left和right 均设置为0*/ 
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; 
+    /*margin设置为auto*/ 
+    margin:auto;
+    border: 1px solid green;    
+} 
 ```
+效果如下：
+![image](http://upload-images.jianshu.io/upload_images/5138592-ad027661da040b57.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###  2、使用正则表达式验证邮箱格式
+## 上下间隔50px刚好铺满窗口，左右自适应
+```css
+    background: #7681a4;
+    height: 100%;
+    border-top: 50px solid #ffffff;
+    border-bottom: 50px solid #ffffff;
+    box-sizing: border-box;
 ```
-var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/; 
-var email = "example@qq.com";
- console.log(reg.test(email)); // true
-```
-
-[回到顶部](http://www.cnblogs.com/#_labelTop)
+![image.png](https://upload-images.jianshu.io/upload_images/5138592-58cd3c111f178994.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

@@ -1,23 +1,33 @@
 <html>
 
 <head>
-<style>
-    
+    <style>
+    #aside{
+    float: left;
+    margin-right: -200px;
+    width: 200px;
+    background-color: red;
+}
+#content{
+    float: right;
+}
+#content .inner{
+    margin-left: 200px;
+    background-color: blue;
+}
+
 </style>
 </head>
 
 <body>
-    本项目内容见顶部文件目录（废话）
-    以下是本人测试代码，没什么意义，请忽略！
-    <hr>
-    <br>
-    <tr></tr>
-    <dl>
-        <dt>Coffee</dt>
-        <dd>Black hot drink</dd>
-        <dt>Milk</dt>
-        <dd>White cold drink</dd>
-    </dl>
+    <div id="aside">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore provident dolor in voluptatum tempore non, placeat obcaecati totam ut delectus libero excepturi distinctio asperiores odit nobis soluta, esse aspernatur beatae.
+</div>
+<div id="content">
+    <div class="inner">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia labore facere delectus quaerat expedita, tenetur recusandae tempora eos natus suscipit voluptatum necessitatibus soluta voluptates modi ullam. Ab minima similique, illum!
+    </div>
+</div>
 </body>
 <script>
     var foo = [1, 2, 3];
