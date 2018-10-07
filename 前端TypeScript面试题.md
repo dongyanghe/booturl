@@ -40,14 +40,6 @@ Observable提供像map、filter、forEach、reduce之类的相似于数组的**�
 *   length – 返回字符串的长度，所谓字符串的长度是指其包含的字符的个数。
 *   toLowerCase() – 将整个字符串转成小写字母。
 *   toUpperCase() – 将整个字符串转成大写字母。
-
-***记：增删改查***
-> http://www.w3school.com.cn/jsref/jsref_obj_string.asp
-### 数组(Array)对象
-#### Array 对象属性
-constructor 返回对创建此对象的数组函数的引用。
-length 设置或返回数组中元素的数目。
-prototype 使您有能力向对象添加属性和方法。
 * 增
 * 删
 * 改
@@ -57,7 +49,14 @@ prototype 使您有能力向对象添加属性和方法。
 * 转
 * 量
 * 态
-
+* 
+***记：增删改查***
+> http://www.w3school.com.cn/jsref/jsref_obj_string.asp
+### 数组(Array)对象
+#### Array 对象属性
+constructor 返回对创建此对象的数组函数的引用。
+length 设置或返回数组中元素的数目。
+prototype 使您有能力向对象添加属性和方法。
 #### Array 对象方法
 concat() 连接两个或更多的数组，并返回结果。
 join() 把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。
