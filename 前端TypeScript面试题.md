@@ -175,6 +175,13 @@ let x: [string, number];
     用在方法上：标明方法不可覆盖重写；
     用在变量上：变量指向的对象不可变但所指对象的值可变；
 > 没有Interface和Abstract声明的类也可以implements和extend
+### 遍历
+#### for in
+遍历属性，依据原始插入顺序遍历所有属性，不适合遍历只需可枚举属性且要求顺序的数组
+#### for of
+遍历地址引用(使用const不可改变值)，按照顺序执行，地址引用
+#### forEach
+按升序为数组中含有效值的每一项执行一次callback 函数，第一次调用 callback后新增的、遍历到某一项的时刻前已删除或者未初始化的项都不会加入索引。
 ## void 和 undefined 有什么区别？
 void作为类在函数声明中使用表示不需要返回;void作为运算符使用if (undefined === void 0)等于true
 undefined是一个基本类型；和null一样是所有类型(代码使用strictNullChecks标记，或者是never类不能赋值null)的子类，可以赋值给各种类型；表示不存在，未实现；

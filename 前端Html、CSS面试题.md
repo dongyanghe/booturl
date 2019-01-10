@@ -135,16 +135,16 @@ http://www.cnblogs.com/yuzhongwusan/archive/2011/11/17/2252208.html
     (3) import只在IE5以上才能识别，而link是HTML标签，无兼容问题; 
     (4) link方式的样式的权重 高于@import的权重.
 ## Position定位:
-绝对定位（**脱离文档流**）：
+### 绝对定位（**脱离文档流**）：
 Fixed：相对于窗口进行定位；可以通过z-index进行层次分级。可层叠
 Absolute：相对于第一个不是static定位的父元素定位。可以通过z-index进行层次分级。可层叠
-相对定位（**不脱离文档流**）：
+### 相对定位（**不脱离文档流**）：
 Relative：相对于**原来的位置**定位。不可层叠
-没有定位（不能使用top、left、rigth、bottom、z-index）：
+### 没有定位（不能使用top、left、rigth、bottom、z-index）：
 Static：出现在正常流中。
 从父元素继承：
 Inherit
-> 记：相对自己定位的Relative舍不得离开位置，自然也不愿意脱离文档流,和float一样也不愿层叠
+> 记：相对自己定位的Relative舍不得离开位置，自然也不愿意脱离文档流,和float一样也不愿层叠,脱离文档流的才能层叠
 > https://blog.csdn.net/fivedoumi/article/details/50850327
 ### position:absolute和float属性的异同  
     A：共同点：
