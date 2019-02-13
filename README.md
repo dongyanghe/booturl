@@ -1,10 +1,10 @@
 # booturl（路径向导）
 https://gitee.com/jikold 
 ### 项目介绍
-[我的processon首页](https://www.processon.com/u/556bcbf6e4b03f9cd579c4bb)，2018年前端最新经典面试题和资源的整合
+[我的processon首页](https://www.processon.com/u/556bcbf6e4b03f9cd579c4bb)
 
 ### 文件路径:
-    本项目内容见顶部文件目录↑↑↑（废话）
+    内容见顶部文件目录↑↑↑（废话）
 ### 本项目的思维导图：
 ![image.png](https://upload-images.jianshu.io/upload_images/5138592-ffba45bfee51da1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![image.png](https://upload-images.jianshu.io/upload_images/5138592-987b39aa5f7cea7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
