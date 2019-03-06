@@ -1210,6 +1210,7 @@ function getType(obj){
 	return map[str];
 }
 ```
+> 原型toString出来的第一个字母都是小写，typeof也一样
 ### 请用js去除字符串空格？
 
 * 使用replace[正则表达式](http://www.runoob.com/js/js-regexp.html)的方法
@@ -1224,11 +1225,11 @@ var str = " 23 23 "; var str2 = str.replace(/\s*/g,"");
 console.log(str2); // 2323
 ```
 
-* 使用str.trim()方法
+* 使用str.trim()可返回去除头尾空格的字符串，不改变原数组
 
 str.trim()无法去除中间的空格需同时使用str.trimLeft()，str.trimRight()。
 
-* 使用jquery,$.trim(str)方法
+* 使用jquery,$.trim(str)，同上不改变原数组
 
 $.trim(str)也无法去除中间的空格
 
@@ -1392,6 +1393,12 @@ s();//输出2
 * 函数内部可以读取函数外部的全局变量；在函数外部无法读取函数内的局部变量。
 
 * 函数内部声明变量的时候，一定要使用var命令。如果不用的话，你实际上声明了一个全局变量！
+eg:
+```TypeScript
+ function test() {
+     var a = b = 1; //  a是局部，b是全局，可改为 var a = 1, b = 1;
+ }
+```
 
 * 使用闭包的注意点
 
