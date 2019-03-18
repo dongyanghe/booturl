@@ -86,7 +86,7 @@ valueOf() 返回数组对象的原始值
     * 【array.splice(index,howmany,item1?,.....,itemX?):】：改变原数组，返回的是含有被删除的元素的数组，从index（从0开始数，包括index）下标开始，删除howmany（0为删除全部）个元素，并在index位置插入item1及其之后的元素；也可以只传入一个数字参数，更改原数组长度
     * 【Array.reverse():Array】：改变原数组，将数组反转，并返回反转后的数组
     * 【array.push(item1, item2, ..., itemX)】：改变原数组，再数组后面插入元素
-    * 【Array.sort(callBackFun?: Function(now: any, next: any)): Array】：改变原数组，返回排序后的数组，无回调参数时默认为按照字符编码的顺序进行排序。
+    * 【Array.sort(callBackFun?: Function(now: any, next: any): number): Array】：改变原数组，返回排序后的数组，无回调参数时默认为按照字符编码的顺序进行排序。
     * 【array.fill(value, start, end)】：改变原数组，将一个固定值替换数组的元素。
     * 【array.copyWithin(target, start, end)】：改变原数组，从数组的指定位置拷贝元素到数组的另一个指定位置中。
 * 查
