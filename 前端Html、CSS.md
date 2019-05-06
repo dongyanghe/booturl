@@ -1,105 +1,59 @@
 ## web前端开发，如何提高页面性能优化？
 
 #### 内容方面：
-
 1.减少 HTTP 请求 (Make Fewer HTTP Requests)
-
 2.减少 DOM 元素数量 (Reduce the Number of DOM Elements)
-
 3.使得 Ajax 可缓存 (Make Ajax Cacheable)
-
 #### 针对CSS：
-
 1.把 CSS 放到代码页上端 (Put Stylesheets at the Top)
-
 2.从页面中剥离 JavaScript 与 CSS (Make JavaScript and CSS External)
-
 3.精简 JavaScript 与 CSS (Minify JavaScript and CSS)
-
 4.避免 CSS 表达式 (Avoid CSS Expressions)
 
 #### 针对JavaScript ：
-
-1\. 脚本放到 HTML 代码页底部 (Put Scripts at the Bottom)
-
-2\. 从页面中剥离 JavaScript 与 CSS (Make JavaScript and CSS External)
-
-3\. 精简 JavaScript 与 CSS (Minify JavaScript and CSS)
-
-4\. 移除重复脚本 (Remove Duplicate Scripts)
+1. 脚本放到 HTML 代码页底部 (Put Scripts at the Bottom)
+2. 从页面中剥离 JavaScript 与 CSS (Make JavaScript and CSS External)
+3. 精简 JavaScript 与 CSS (Minify JavaScript and CSS)
+4. 移除重复脚本 (Remove Duplicate Scripts)
 
 #### 面向图片(Image)：
-
-1.优化图片
-
-2 不要在 HTML 中使用缩放图片
-
-3 使用恰当的图片格式
-
-4 使用 CSS Sprites 技巧对图片优化
+1. 优化图片
+2. 不要在 HTML 中使用缩放图片
+3. 使用恰当的图片格式
+4. 使用 CSS Sprites 技巧对图片优化
 
 ### 5、前端开发中，如何优化图像？图像格式的区别？
 
 #### 优化图像：
-
-1、不用图片，尽量用css3代替。 比如说要实现修饰效果，如半透明、边框、圆角、阴影、渐变等，在当前主流浏览器中都可以用CSS达成。
-
-2、 使用矢量图SVG替代位图。对于绝大多数图案、图标等，矢量图更小，且可缩放而无需生成多套图。现在主流浏览器都支持SVG了，所以可放心使用！
-
-3.、使用恰当的图片格式。我们常见的图片格式有JPEG、GIF、PNG。
-
+1. 不用图片，尽量用css3代替。 比如说要实现修饰效果，如半透明、边框、圆角、阴影、渐变等，在当前主流浏览器中都可以用CSS达成。
+2. 使用矢量图SVG替代位图。对于绝大多数图案、图标等，矢量图更小(@doubt)，且可缩放而无需生成多套图。现在主流浏览器都支持SVG了，所以可放心使用！
+3. 使用恰当的图片格式。我们常见的图片格式有JPEG、GIF、PNG。
 基本上，内容图片多为照片之类的，适用于JPEG。
-
 而修饰图片通常更适合用无损压缩的PNG。
 
 GIF基本上除了GIF动画外不要使用。且动画的话，也更建议用video元素和视频格式，或用SVG动画取代。
-
-4、按照HTTP协议设置合理的缓存。
-
-5、使用字体图标webfont、CSS Sprites等。
-
-6、用CSS或JavaScript实现预加载。
-
-7、WebP图片格式能给前端带来的优化。WebP支持无损、有损压缩，动态、静态图片，压缩比率优于GIF、JPEG、JPEG2000、PG等格式，非常适合用于网络等图片传输。
+4. 按照HTTP协议设置合理的缓存。
+5. 使用字体图标webfont、CSS Sprites等。
+6. 用CSS或JavaScript实现预加载。
+7. WebP图片格式能给前端带来的优化。WebP支持无损、有损压缩，动态、静态图片，压缩比率优于GIF、JPEG、JPEG2000、PG等格式，非常适合用于网络等图片传输。
 
 ####  图像格式的区别：
-
-矢量图：图标字体，如 font-awesome；svg 
-
-位图：gif,jpg(jpeg),png
-
-区别：
-
-　　1、gif:是是一种无损，8位图片格式。具有支持动画，索引透明，压缩等特性。适用于做色彩简单(色调少)的图片，如logo,各种小图标icons等。
-
-　　2、JPEG格式是一种大小与质量相平衡的压缩图片格式。适用于允许轻微失真的色彩丰富的照片，不适合做色彩简单(色调少)的图片，如logo,各种小图标icons等。
-
-　　3、png:PNG可以细分为三种格式:PNG8，PNG24，PNG32。后面的数字代表这种PNG格式最多可以索引和存储的颜色值。
-
+    矢量图：图标字体，如 font-awesome；svg 
+    位图：gif,jpg(jpeg),png
+    区别：
+        1.gif:是一种无损，8位图片格式。具有支持动画，索引透明，压缩等特性。适用于做色彩简单(色调少)的图片，如logo,各种小图标icons等。
+        2.JPEG格式是一种大小与质量相平衡的压缩图片格式。适用于允许轻微失真的色彩丰富的照片，不适合做色彩简单(色调少)的图片，如logo,各种小图标icons等。
+        3.png:PNG可以细分为三种格式:PNG8，PNG24，PNG32。后面的数字代表这种PNG格式最多可以索引和存储的颜色值。
+        4.svg图片相对会 **偏大**
 关于透明：PNG8支持索引透明和alpha透明;PNG24不支持透明;而PNG32在24位的PNG基础上增加了8位（256阶）的alpha通道透明;
 
-优缺点：
-
-　　1、能在保证最不失真的情况下尽可能压缩图像文件的大小。
-
-　　2、对于需要高保真的较复杂的图像，PNG虽然能无损压缩，但图片文件较大，不适合应用在Web页面上。 
+    优缺点：
+    　　1、能在保证最不失真的情况下尽可能压缩图像文件的大小。
+    　　2、对于需要高保真的较复杂的图像，PNG虽然能无损压缩，但图片文件较大，不适合应用在Web页面上。 
 
 ## 21、使用css实现一个三角形
 
-利用border去画~ 
-先看一下border的布局，如图： 
-[图片上传失败...(image-d88b57-1537104121491)]
 
-所以三角形： 
-1.设置宽度、高度为0 
-[图片上传失败...(image-37a8f2-1537104121491)]
-
-2.不设置border-top 
-[图片上传失败...(image-1d56cc-1537104121491)]
-
-
-3.设置左右border颜色为transparent–透明 
-[图片上传中...(image-238656-1537104121491-0)]
 
 ### 6、浏览器是如何渲染页面的？
 
@@ -127,7 +81,7 @@ http://www.cnblogs.com/yuzhongwusan/archive/2011/11/17/2252208.html
 ## display:none和visibility:hidden的区别？
     display:none  隐藏对应的元素，在文档布局中不再给它分配空间，它各边的元素会合拢，
     就当他从来不存在。
-    visibility:hidden  隐藏对应的元素，但是在文档布局中仍保留原来的空间。
+    visibility:hidden  隐藏对应的元素，但是在文档布局中**仍保留原来的空间**。
 
 ### CSS中 link 和@import 的区别是？
     (1) link属于HTML标签，而@import是CSS提供的; 
@@ -382,12 +336,18 @@ onload 事件的触发，表示页面包含图片等文件在内的所有元素�
 效果如下：
 ![image](http://upload-images.jianshu.io/upload_images/5138592-ad027661da040b57.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 上下间隔50px刚好铺满窗口，左右自适应
-```css
-    background: #7681a4;
-    height: 100%;
-    border-top: 50px solid #ffffff;
-    border-bottom: 50px solid #ffffff;
-    box-sizing: border-box;
+## 去除input的历史输入记录
+```html
+    <!-- 再form或者input标签加入以下属性 -->
+    autocomplete="off"
 ```
-![image.png](https://upload-images.jianshu.io/upload_images/5138592-58cd3c111f178994.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+## 去除input的选中历史记录或者其他方式聚焦时的浏览器默认背景色
+```css
+    input:-webkit-autofill,input:-internal-autofill-previewed, input:-internal-autofill-selected, textarea:-internal-autofill-previewed, textarea:-internal-autofill-selected, select:-internal-autofill-previewed, select:-internal-autofill-selected {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #333333 !important;
+    /* 重点,是box-shadow不是背景色 */
+    -webkit-box-shadow:0 0 0px 1000px #fff inset;
+}
+```
