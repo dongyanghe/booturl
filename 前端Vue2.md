@@ -6,3 +6,8 @@
 
  ## 数据绑定
 数据得先声明才能实现双向绑定
+
+## 支持TypeScript
+参考：
+https://juejin.im/post/5c662a7de51d4562e71c4277
+https://cn.vuejs.org/v2/guide/typescript.html
