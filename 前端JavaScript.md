@@ -1171,13 +1171,12 @@ obj.constructor === String
 (<String>obj).split !== undefined;
 
 obj instanceof String
-
-
 const typeStr = Object.prototype.toString.call(obj);
 if (typeStr === '[object Array]') {
     //  ...
 }
 
+Array.isArray(obj)
 // 判断变量的类型
 function getType(obj){
 	var str = Object.prototype.toString.call(obj);
@@ -2163,56 +2162,6 @@ var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/;
 var email = "example@qq.com";
  console.log(reg.test(email)); // true
 ```
-## 22、用promise手写ajax
-```TypeScript
-function getJson(url){
-    return new Promise((resolve, reject) =>{
-        var xhr = new XMLHttpRequest();
-        xhr.open('open', url, true);
-        xhr.onreadystatechange = function(){
-            if(this.readyState == 4){
-                if(this.status = 200){
-                    resolve(this.responseText, this)
-                }else{
-                    var resJson = { code: this.status, response: this.response }
-                    reject(resJson, this)    
-                }
-            }
-        }
-        xhr.send()
-    })
-}
-
-function postJSON(url, data) {
-    return new Promise( (resolve, reject) => {
-        var xhr = new XMLHttpRequest()
-        xhr.open("POST", url, true)
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = function () {
-            if (this.readyState === 4) {
-                if (this.status === 200) {
-                    resolve(JSON.parse(this.responseText), this)
-                } else {
-                    var resJson = { code: this.status, response: this.response }
-                    reject(resJson, this)
-                }
-            }
-        }
-
-        xhr.send(JSON.stringify(data))
-    })
-}
-
-getJSON('/api/v1/xxx')    // => 这里面是就try
-.catch( error => {
-  // dosomething          // => 这里就是catch到了error，如果处理error以及返还合适的值
-})
-.then( value => {
-  // dosomething          // 这里就是final
-})
-```
-
 ## 23、手写一个类的继承，并解释一下
 
 继承的形式有很多中，js高程里面归纳了其中，我简单说一下前三种。 
