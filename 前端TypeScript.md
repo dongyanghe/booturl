@@ -67,7 +67,7 @@ shift() 删除并返回数组的第一个元素
 push() 向数组的末尾添加一个或更多元素，并返回新的长度。
 unshift() 向数组的开头添加一个或更多元素，并返回新的长度。
 reverse() 颠倒数组中元素的顺序。
-slice() 从某个已有的数组返回选定的元素
+slice(start, end) 从某个已有的数组返回选定的元素,不传值可用于拷贝所有
 sort() 对数组的元素进行排序
 splice() 删除元素，并向数组添加新元素。
 toSource() 返回该对象的源代码。
@@ -96,8 +96,9 @@ valueOf() 返回数组对象的原始值
     * 【Array.forEach((val: any, index: Number, array: Array), thisValue)】：不改变原数组，循环遍历，特点是array是地址传递，其他是值传递,空数组是不会执行回调函数
     * 【Array.map(function(currentValue,index,arr), thisValue): Array】：不改变原数组，返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值，回调函数需return。跟forEach一样array是地址传递，其他是值传递,空数组是不会执行回调函数
     * 【array.filter(function(currentValue,index,arr), thisValue): Array】：不改变原数组，返回过滤后的数组
-    *  【array.find(function(currentValue,index,arr), thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的值，找到后就不在回调。
-    *  【array.findIndex(function(currentValue,index,arr), thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的索引，找到后就不在回调。
+    * 【array.find(function(currentValue,index,arr), thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的值，找到后就不在回调。
+    * 【array.findIndex(function(currentValue,index,arr), thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的索引，找到后就不在回调。
+    * 【every(function(currentValue,index,arr): Boolean) 方法用于检测数组所有元素是否都符合指定条件，空数组不执行
 * 存
 * 传
 * 转
@@ -108,7 +109,7 @@ valueOf() 返回数组对象的原始值
 * 态
     * 【Array.isArray(obj): Boolean】：判断obj是否是数组
 * 计
-    * 【array.reduce(function(total, currentValue, currentIndex, arr), initialValue)】：接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+    * 【array.reduce(function(total, currentValue, currentIndex, arr), initialValue)】：接收一个函数作为累加器，数组中的每个值（从下标0开始）开始调用，total为上一次计算的结果值，初始为0。
     * 
 > http://www.runoob.com/jsref/jsref-obj-array.html
 > http://www.w3school.com.cn/jsref/jsref_obj_array.asp

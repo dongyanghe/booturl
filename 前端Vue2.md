@@ -11,3 +11,46 @@
 参考：
 https://juejin.im/post/5c662a7de51d4562e71c4277
 https://cn.vuejs.org/v2/guide/typescript.html
+
+## 生命周期
+```TypeScript
+  new Vue({
+      data: {
+          message: 0
+      },
+      template: '<div>{{ message }}</div>',
+      beforeCreate() {
+          console.log(this.$el, 'beforeCreate');
+      },
+      created() {
+          console.log(this.$el, 'created');
+      },
+      beforeMount() {
+          console.log(this.$el, 'beforeMount');
+      },
+      mounted() {
+          console.log(this.$el, 'mounted');
+      },
+      beforeUpdate() {
+          console.log(this.$el, 'beforeUpdate');
+      },
+      updated() {
+          console.log(this.$el, 'updated');
+      },
+      activated() {
+          console.log(this.$el, 'activated');
+      },
+      deactivated() {
+          console.log(this.$el, 'deactivated');
+      },
+      beforeDestroy() {
+          console.log(this.$el, 'beforeDestroy');
+      },
+      destroyed() {
+          console.log(this.$el, 'destroyed');
+      },
+      errorCaptured() {
+          console.log(this.$el, 'errorCaptured');
+      }
+  });
+```

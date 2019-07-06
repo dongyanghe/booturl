@@ -643,21 +643,6 @@ Javascript数据推送
     简单来说，浏览器会解析HTML生成**DOM Tree**，其次会根据CSS生成**CSS Rule Tree**，而**javascript又可以根据DOM API操作DOM**
 > 详情：[JavaScript继承方式详解][9]
 
-ajax过程
------
-    (1)创建XMLHttpRequest对象,也就是创建一个异步调用对象.
-    
-    (2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息.
-    
-    (3)设置响应HTTP请求状态变化的函数.
-    
-    (4)发送HTTP请求.
-    
-    (5)获取异步调用返回的数据.
-    
-    (6)使用JavaScript和DOM实现局部刷新.
-
-详情：[JavaScript学习总结（七）Ajax和Http状态字][10]
 ## NaN 
 
 NaN 属性代表一个“不是数字”的值。这个特殊的值是因为运算不能执行而导致的，不能执行的原因要么是因为其中的运算对象之一非数字（例如， "abc"/ 4），要么是因为运算的结果非数字（例如，除数为零）。
@@ -1180,9 +1165,19 @@ js操作获取和设置cookie
 ```TypeScript
 typeof(obj) === "string"
 typeof obj === "string"
+
 obj.constructor === String
+
 (<String>obj).split !== undefined;
+
 obj instanceof String
+
+
+const typeStr = Object.prototype.toString.call(obj);
+if (typeStr === '[object Array]') {
+    //  ...
+}
+
 // 判断变量的类型
 function getType(obj){
 	var str = Object.prototype.toString.call(obj);
