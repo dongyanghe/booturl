@@ -1687,13 +1687,10 @@ p.show();
 <pre style="box-sizing: border-box; outline: 0px; padding: 8px; margin: 0px 0px 24px; position: relative; white-space: pre-wrap; overflow-wrap: break-word; overflow-x: auto; font-family: &quot;Courier New&quot;; font-size: 12px; line-height: 22px; color: rgb(0, 0, 0); word-break: break-all;">$('[name=selectname] :selected')</pre>
 
 ### 3、$(this) 和 this 关键字在 jQuery 中有何不同？
-
 $(this) 返回一个 jQuery 对象，你可以对它调用多个 jQuery 方法，比如用 text() 获取文本，用val() 获取值等等。
-
 而 this 代表当前元素，它是 JavaScript 关键词中的一个，表示上下文中的当前 DOM 元素。你不能对它调用 jQuery 方法，直到它被 $() 函数包裹，例如 $(this)。
 
-### 4、jquery怎么移除标签onclick属性？
-
+### 4、jquery怎么移除标签onclick
 获得a标签的onclick属性: $("a").attr("onclick")
 
 删除onclick属性：$("a").removeAttr("onclick");
@@ -1701,7 +1698,6 @@ $(this) 返回一个 jQuery 对象，你可以对它调用多个 jQuery 方法�
 设置onclick属性：$("a").attr("onclick","test();");
 
 ### 5、jquery中addClass,removeClass,toggleClass的使用。
-
 $(selector).addClass(class)：为每个匹配的元素添加指定的类名
 
 $(selector).removeClass(class)：从所有匹配的元素中删除全部或者指定的类，删除class中某个值；
@@ -1710,7 +1706,7 @@ $(selector).toggleClass(class)：如果存在（不存在）就删除（添加�
 
 $(selector).removeAttr(class);删除class这个属性；
 
-### 6、JQuery有几种选择器?
+### 6、JQuery选择器
 
 (1)、基本选择器：#id，class,element,*;
 
@@ -1725,30 +1721,22 @@ $(selector).removeAttr(class);删除class这个属性；
 (6)、属性过滤器选择器：[attribute] ，[attribute=value] ，[attribute!=value] ，[attribute^=value] ，[attribute$=value] ，[attribute*=value]
 
 (7)、子元素过滤器选择器：:nth-child ，:first-child ，:last-child ，:only-child
-
 (8)、表单选择器： :input ，:text ，:password ，:radio ，:checkbox ，:submit 等；
-
 (9)、表单过滤器选择器：:enabled ，:disabled ，:checked ，:selected
 
-### 7、jQuery中的Delegate()函数有什么作用？
-
-   delegate()会在以下两个情况下使用到：
-
+### 7、jQuery中的Delegate()
+delegate()会在以下两个情况下使用到：
  1、如果你有一个父元素，需要给其下的子元素添加事件，这时你可以使用delegate()了，代码如下：
 ```TypeScript
 $("ul").delegate("li", "click", function(){ $(this).hide(); });
 ```
-
  2、当元素在当前页面中不可用时，可以使用delegate()
 
 ### 8、$(document).ready()方法和window.onload有什么区别？
-
  (1)、window.onload方法是在网页中所有的元素(包括元素的所有关联文件)完全加载到浏览器后才执行的。
-
  (2)、$(document).ready() 方法可以在DOM载入就绪时就对其进行操纵，并调用执行绑定的函数。
 
 ### 9、如何用jQuery禁用浏览器的前进后退按钮？
-
 实现代码如下：
 ```TypeScript
 <script type="text/javascript" language="javascript"> $(document).ready(function() {
@@ -1757,17 +1745,12 @@ $("ul").delegate("li", "click", function(){ $(this).hide(); });
 }); </script>
 ```
 ### 10、 jquery中$.get()提交和$.post()提交有区别吗？
-
 相同点：都是异步请求的方式来获取服务端的数据；
 
 异同点：
-
 1、请求方式不同：$.get() 方法使用GET方法来进行异步请求的。$.post() 方法使用POST方法来进行异步请求的。
-
 2、参数传递方式不同：get请求会将参数跟在URL后进行传递，而POST请求则是作为HTTP消息的实体内容发送给Web服务器的，这种传递是对用户不可见的。
-
 3、数据传输大小不同：get方式传输的数据大小不能超过2KB 而POST要大的多
-
 4、安全问题： GET 方式请求的数据会被浏览器缓存起来，因此有安全问题。
 
 ### 11、写出一个简单的$.ajax()的请求方式？
@@ -1785,9 +1768,8 @@ $.ajax({
 }); 
 ```
 
-### 12、jQuery的事件委托方法bind 、live、delegate、on之间有什么区别？
-
-#### (1)、bind 【jQuery 1.3之前】
+### 12、jQuery的事件委托方法bind 、live、delegate、on
+#### bind 【jQuery 1.3之前】
 
 定义和用法：主要用于给选择到的元素上绑定特定事件类型的监听函数；
 
@@ -1801,14 +1783,11 @@ $.ajax({
 
 实例如下：$( "#members li a" ).bind( "click", function( e ) {} );
 
-#### (2)、live 【jQuery 1.3之后】
-
+#### live 【jQuery 1.3之后】
 定义和用法：主要用于给选择到的元素上绑定特定事件类型的监听函数；
-
 语法：live(type, [data], fn);
 
 特点：
-
 　　(1)、live方法并没有将监听器绑定到自己(this)身上，而是绑定到了this.context上了。
 
 　　(2)、live正是利用了事件委托机制来完成事件的监听处理，把节点的处理委托给了document，新添加的元素不必再绑定一次监听器。
@@ -1818,43 +1797,27 @@ $.ajax({
 实例如下：$( document ).on( "click", "#members li a", function( e ) {} );
 
 #### (3)、delegate 【jQuery 1.4.2中引入】
-
 定义和用法：将监听事件绑定在就近的父级元素上
-
 语法：delegate(selector,type,[data],fn)
-
 特点：
-
 　　(1)、选择就近的父级元素，因为事件可以更快的冒泡上去，能够在第一时间进行处理。
-
 　　(2)、更精确的小范围使用事件代理，性能优于.live()。可以用在动态添加的元素上。
-
 实例如下：
 
 $("#info_table").delegate("td","click",function(){/*显示更多信息*/});
 
 $("table").find("#info").delegate("td","click",function(){/*显示更多信息*/});
 
-#### (4)、on 【1.7版本整合了之前的三种方式的新事件绑定机制】
-
+#### 事件绑定机制
 定义和用法：将监听事件绑定到指定元素上。
-
 语法：on(type,[selector],[data],fn)
-
 实例如下：$("#info_table").on("click","td",function(){/*显示更多信息*/});参数的位置写法与delegate不一样。
-
 说明：on方法是当前JQuery推荐使用的事件绑定方法，附加只运行一次就删除函数的方法是one()。
-
  总结：.bind(), .live(), .delegate(),.on()分别对应的相反事件为：.unbind(),.die(), .undelegate(),.off()
 
 [回到顶部](http://www.cnblogs.com/#_labelTop)
 
-## **HTML & CSS:**
-
-
-
 ## 开发及性能优化
-
 ### **1、规避javascript多人开发函数重名问题**
 
 *   命名空间
@@ -1864,16 +1827,14 @@ $("table").find("#info").delegate("td","click",function(){/*显示更多信息*/
 *   变量转换成对象的属性
 *   对象化
 
-### **2、请说出三种减低页面加载时间的方法**
-
+### 减低页面加载时间的方法
 *   压缩css、js文件
 *   合并js、css文件，减少http请求
 *   外部js、css文件放在最底下
 *   加载久的js/css文件放在最底下
 *   **减少dom操作**，尽可能用变量替代不必要的dom操作
 
-### 3、你所了解到的Web攻击技术
-
+### Web攻击技术
 （1）XSS（Cross-Site Scripting，跨站脚本攻击）：指通过存在安全漏洞的Web网站注册用户的浏览器内运行非法的HTML标签或者JavaScript进行的一种攻击。
 （2）SQL注入攻击
 （3）CSRF（Cross-Site Request Forgeries，跨站点请求伪造）：指攻击者通过设置好的陷阱，强制对已完成的认证用户进行非预期的个人信息或设定信息等某些状态更新。
@@ -1890,34 +1851,8 @@ GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来�
 GET参数通过URL传递，POST放在Request body中。
 145、Post一个file的时候file放在哪的？
 
-## jsonp
 
-```
-参考自：    http://www.qdfuns.com/notes/16738/1b6ad6125747d28592a53a960b44c6f4.html
-
-```
-
-先说说JSONP是怎么产生的：
-
-其实网上关于JSONP的讲解有很多，但却千篇一律，而且云里雾里，对于很多刚接触的人来讲理解起来有些困难，着用自己的方式来阐释一下这个问题，看看是否有帮助。
-
-1、一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准。
-
-2、不过我们又发现，Web页面上调用js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有”src”这个属性的标签都拥有跨域的能力，比如script、img、iframe）。
-
-3、于是可以判断，当前阶段如果想通过纯web端（ActiveX控件、服务端代理、HTML5的Websocket等方式不算）跨域访问数据就只有一种可能，那就是在远程服务器上设法把数据装进js格式的文件里，供客户端调用和进一步处理。
-
-4、恰巧我们已经知道有一种叫做JSON的纯字符数据格式可以简洁的描述复杂数据，更妙的是JSON还被js原生支持，所以在客户端几乎可以随心所欲的处理这种格式的数据。
-
-5、这样子解决方案就呼之欲出了，web客户端通过与调用脚本一模一样的方式，来调用跨域服务器上动态生成的js格式文件（一般以JSON为后缀），显而易见，服务器之所以要动态生成JSON文件，目的就在于把客户端需要的数据装入进去。
-
-6、客户端在对JSON文件调用成功之后，也就获得了自己所需的数据，剩下的就是按照自己需求进行处理和展现了，这种获取远程数据的方式看起来非常像AJAX，但其实并不一样。
-
-7、为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随意定制自己的函数来自动处理返回数据了。
-
-
-## 3、http请求头，请求体，cookie在哪个里面？url在哪里面？
-
+## 3、http请求头，请求体，cookie、url
 参考菜鸟教程HTTP专栏：[http://www.runoob.com/http/http-tutorial.html](http://www.runoob.com/http/http-tutorial.html) 
 人人三面的时候问我http请求头都有哪些值，答不上来。。GG 
 **客户端请求消息** 
@@ -1926,21 +1861,18 @@ GET参数通过URL传递，POST放在Request body中。
 **服务器响应消息** 
 HTTP响应也由四个部分组成，分别是：状态行、消息报头、空行和响应正文。 
 ![这里写图片描述](http://upload-images.jianshu.io/upload_images/5138592-ba60a495550c9763.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 实例 
 下面实例是一点典型的使用GET来传递数据的实例： 
 客户端请求：
-
-```
+```Json
 GET /hello.txt HTTP/1.1
 User-Agent: curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3
 Host: www.example.com
 Accept-Language: en, mi
 ```
-
 服务端响应:
 
-```
+```Json
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache
@@ -1954,16 +1886,14 @@ Content-Type: text/plain
 
 输出结果：
 
-```
+```html
 Hello World! My payload includes a trailing CRLF.
 ```
 
 ## 5、对闭包的理解，实现一个暴露内部变量，而且外部可以访问修改的函数
-
 闭包的作用： 
 匿名自执行函数、缓存、实现封装（主要作用）、实现面向对象中的对象
-
-```
+```TypeScript
 var person = function(){    
     //变量作用域为函数内部，外部无法访问    
     var name = "default";       
@@ -1987,15 +1917,12 @@ a
 ```
 
 ## 6、基本的数据类型
-
 5个简单数据类型（基本数据类型）+ 1个复杂数据类型 
 undefiend, number string null boolean + object 
 ES6 新增Symbol
 
 ## 7、基本的两列自适应布局
-
 左定右适应：
-
 ```scss
 #div1{
     width: 100px;
@@ -2011,18 +1938,16 @@ ES6 新增Symbol
 }
 ```
 
-## 8、unix中常用的命令行
+## unix中常用的命令行
 
 虽然上过linux课，但是命令忘得差不多了 尴尬。。。
 
-## 9、OSI模型，HTTP,TCP,UDP分别在哪些层
+## OSI模型，HTTP,TCP,UDP分别在哪些层
 
 这个可以参考我另一个博客： 
 [http://blog.csdn.net/qq_22944825/article/details/78160659](http://blog.csdn.net/qq_22944825/article/details/78160659) 
 OSI：物理层-数据链路层-网络层-传输层-会话层-表现层-应用层 
 [图片上传失败...(image-fd5e1a-1537104121491)]
-
-## 10、解释平衡二叉树，以及在数据结构中的应用（红黑树）
 
 ## 11、快排的时间复杂度和空间复杂度
 
@@ -2030,7 +1955,6 @@ OSI：物理层-数据链路层-网络层-传输层-会话层-表现层-应用�
 [http://web.jobbole.com/87968/](http://web.jobbole.com/87968/) 
 ![这里写图片描述](http://upload-images.jianshu.io/upload_images/5138592-e7f9d4d5b06058b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ## 位运算
-
 > https://blog.csdn.net/xiaopihaierletian/article/details/78162863
 
 ## setTimeout的方式(注册事件)
@@ -2045,12 +1969,10 @@ var nextListItem = function() {
     }
 };
 ```
-## 12、手写一个jQuery插件
-
+## jQuery插件手写
 1、$.extend(src) 
 　　该方法就是将src合并到jquery的全局对象中去，如：
-
-```
+```TypeScript
  $.extend({
       hello:function(){alert('hello');}
       });
@@ -2058,32 +1980,23 @@ var nextListItem = function() {
 
 2、$.fn.extend(src) 
 　　该方法将src合并到jquery的实例对象中去，如:
-
-```
+```TypeScript
  $.fn.extend({
   hello:function(){alert('hello');}
  });
 ```
-## 13、在jquery方法和原型上面添加方法的区别和实现，以及jquery对象的实现
-
-使用jquery的第一件事就是要使用jquery对象，jquery对象和javascript中的DOM对象是不同的。
-
-什么是jquery对象？jquery将一个DOM对象转化为jquery对象后就可以使用jquery类库提供的各种函数。可以将jquery对象理解为一个类，并且封装了很多的方法，而且可以动态的通过加载插件扩展这个类，类似于C#中的分布类partial class。
-
-除了jQuery工具函数，jQuery的操作都是从jQuery对象开始。比如：
 ```TypeScript
 attr(key,value)
-
 <img id="myphoto" alt="my photo" src=""/>
-
 $("#myphoto").attr("src","/pic/1.jpg");
 
 ```
-
 jQuery对象是一个特殊的集合对象。即使只有一个元素，jQuery对象仍然是一个集合。说其特殊是因为实际上jQuery对象是包含一个集合对象和各种函数的类。
 
-## 14、手写一个递归函数
-
+## 递归函数
+注意：
+1. 地址传递和值传递
+1. 各级递归时同步的，未递归完成时不会return
 ```TypeScript
  function fact(num) {
     if (num <= 1) {
@@ -2093,14 +2006,12 @@ jQuery对象是一个特殊的集合对象。即使只有一个元素，jQuery�
     }
 } 
 ```
-
 以下代码可导致出错：
 ```TypeScript
 var anotherFact = fact; 
  fact = null; 
  alert(antherFact(4)); //出错 
 ```
-
 由于fact已经不是函数了，所以出错。 
 用arguments.callee可解决问题，这是一个指向正在执行的函数的指针,**arguments.callee**返回正在被执行的对现象。 
 新的函数为：
@@ -2117,53 +2028,42 @@ fact = null;
 alert(antherFact(4)); //结果为24.
 ```
 
-## 15、对前端路由的理解？前后端路由的区别？
-
+## 对前端路由
 前端的路由和后端的路由在实现技术上不一样，但是原理都是一样的。在 HTML5 的 history API 出现之前，前端的路由都是通过 hash 来实现的，hash 能兼容低版本的浏览器。
 ```TypeScript
 http://10.0.0.1/
 http://10.0.0.1/#/about
 http://10.0.0.1/#/concat
 ```
-
 **服务端路由**：每跳转到不同的URL，都是重新访问服务端，然后服务端返回页面，页面也可以是服务端获取数据，然后和模板组合，返回HTML，也可以是直接返回模板HTML，然后由前端JS再去请求数据，使用前端模板和数据进行组合，生成想要的HTML。
 
 **前端路由**：每跳转到不同的URL都是使用前端的锚点路由，实际上只是JS根据URL来操作DOM元素，根据每个页面需要的去服务端请求数据，返回数据后和模板进行组合，当然模板有可能是请求服务端返回的，这就是 SPA 单页程序。
-
 在js可以通过window.location.hash读取到路径加以解析之后就可以响应不同路径的逻辑处理。
-
 history 是 HTML5 才有的新 API，可以用来操作浏览器的 session history (会话历史)。基于 history 来实现的路由可以和最初的例子中提到的路径规则一样。
-
 H5还新增了一个 **hashchange事件**，也是很有用途的一个新事件：
-
 当页面hash(#)变化时，即会触发hashchange。锚点Hash起到引导浏览器将这次记录推入历史记录栈顶的作用，window.location对象处理“#”的改变并不会重新加载页面，而是将之当成新页面，放入历史栈里。并且，当前进或者后退或者触发hashchange事件时，我们可以在对应的事件处理函数中注册ajax等操作！ 
 但是hashchange这个事件不是每个浏览器都有，低级浏览器需要用轮询检测URL是否在变化，来检测锚点的变化。当锚点内容(location.hash)被操作时，如果锚点内容发生改变浏览器才会将其放入历史栈中，如果锚点内容没发生变化，历史栈并不会增加，并且也不会触发hashchange事件。
 
-## 16、介绍一下webpack和gulp，以及项目中具体的使用
 
-
-## 19、关于平衡二叉树
+## 平衡二叉树
 
 平衡二叉搜索树（Self-balancing binary search tree）又被称为AVL树（有别于AVL算法），且具有以下性质：它是一 棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树，同时，平衡二叉树必定是二叉搜索树，反之则不一定。平衡二叉树的常用实现方法有红黑树、AVL、替罪羊树、Treap、伸展树等。 最小二叉平衡树的节点的公式如下 F(n)=F(n-1)+F(n-2)+1 这个类似于一个递归的数列，可以参考Fibonacci(斐波那契)数列，1是根节点，F(n-1)是左子树的节点数量，F(n-2)是右子树的节点数量。
 
-## 20、前后端分离的意义以及对前端工程化的理解
-
-##  正则表达式
-###  1、写一个function，清除字符串前后的空格。（兼容所有浏览器）
-```function trim(str) { 
+### 清除字符串前后的空格。（兼容所有浏览器）
+```TypeScript
+function trim(str) { 
     if (str && typeof str === "string") { 
         return str.replace(/(^\s*)|(\s*)$/g,""); //去除前后空白符
  }
 }
 ```
 ###  2、使用正则表达式验证邮箱格式
-```
+```TypeScript
 var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/; 
 var email = "example@qq.com";
  console.log(reg.test(email)); // true
 ```
-## 23、手写一个类的继承，并解释一下
-
+## 类的继承
 继承的形式有很多中，js高程里面归纳了其中，我简单说一下前三种。 
 1.原型继承
 ```TypeScript
@@ -2181,7 +2081,6 @@ function Child(){
 //继承parent
 Child.prototype = new Parent();
 ```
-
 2.构造函数继承
 ```TypeScript
 function Animal(name){
@@ -2194,12 +2093,10 @@ var cat = new Animal("maomi");
 cat.name;
 cat.eat();
 ```
-
 缺点是： 
 3.组合继承
 
-## 24、解释一下call函数和apply函数的作用，以及用法
-
+## call函数和apply函数的作用，以及用法
 改变this的指向。 
 this的指向问题，在你不知道的js这本书中（神书）做了四点归纳： 
 1.默认绑定 （指 直接调用 foo(), this指向window） 
@@ -2207,13 +2104,7 @@ this的指向问题，在你不知道的js这本书中（神书）做了四点�
 3.显示绑定（利用call、apply、bind改变this） 
 4.new（var cat = new Animal() , this指向cat对象）
 
-
-
-### 对java的理解
-
-### 介绍node.js，并且介绍你用它做的项目
-### js对象中什么是可枚举性(enumerable)？
-
+### js对象的可枚举性(enumerable)？
 可枚举性（enumerable）用来控制所描述的属性，是否将被包括在for...in循环之中。具体来说，如果一个属性的enumerable为false，下面三个操作不会取到该属性。
 * for..in循环
 * Object.keys方法
@@ -2241,492 +2132,6 @@ JSON.stringify(o // => "{a:1,b:2,c:3}"
 ```
 遍历操作都无法获取该属性，使得它有点像“秘密”属性，但还是可以直接获取它的值。
 
-
-## 41、介绍自己的项目
-
-略
-
-## 42、实现两个排序数组的合并
-
-参考42题中的merge函数。
-
-
-
-## 44、手写一个promise版的ajax
-
-## 45、手写实现一个promise
-
-## 46、手写实现requireJS模块实现
-
-## 47、手写实现jquery里面的insertAfter
-
-## 48、react和vue的介绍以及异同
-
-## 49、AMD和CMD，commonJS的区别
-
-## 50、介绍一下backbone
-
-51、了解过SEO吗？
-
-52、低版本浏览器不支持HTML5标签怎么解决？
-
-53、用js使低版本浏览器支持HTML5标签 底层是怎么实现的？
-
-54、实现一个布局：左边固定宽度为200，右边自适应，而且滚动条要自动选择只出现最高的那个
-
-55、画出盒子模型，要使谷歌浏览器的盒子模型显示得跟IE浏览器一致（让谷歌跟ie一致，不是ie跟谷歌一致），该怎么做？
-
-57、Array对象自带的方法，一一列举
-
-58、若干个数字，怎么选出最大的五个
-
-59、Array对象自带的排序函数底层是怎么实现的？
-
-60、常用的排序算法有哪些，介绍一下选择排序
-
-61、了解navigator对象吗？
-
-62、手写一个正则表达式，验证邮箱
-
-63、link和@import引入CSS的区别？
-
-64、刚才说有些浏览器不兼容@import，具体指哪些浏览器？
-
-65、介绍一下cookie,localstorage,sessionstorage,session
-
-66、jquery绑定click的方法有几种
-
-67、你的优点/竞争力
-
-68、移动端适配问题
-
-69、react的难点在哪里
-
-70、做过css动画吗
-
-71、如何优化网站
-
-72、以后的规划
-
-73、你做过最困难的事情是啥？
-
-74、css3 html5新特性
-
-75、闭包，ES6，跨域
-
-76、问做过啥项目，用到什么技术，遇到什么困难
-
-77、兼容性
-
-78、盒子模型
-
-79、Array的unshift() method的作用是什么？如何连接两个Array？如何在Array里移除一个元素？
-
-80、用纸笔写一个Closure，任意形式和内容
-
-81、知不知道Array-like Object？
-
-82、如何用Native JavaScript来读写Cookie？
-
-83、知不知道CSS Box-model？
-
-84、如何做一个AJAX Request？
-
-85、Cross-domain access有没有了解？
-
-86、前端安全方面有没有了解？XSS和CSRF如何攻防？
-
-87、HTTP Response的Header里面都有些啥？
-
-88、知不知道HTTP2？
-
-89、输入URL后发生了什么？
-
-90、new operator实际上做了什么？
-
-91、面向对象的属性有哪些？
-
-92、做一个两栏布局，左边fixed width，右边responsive，用纸笔手写
-
-93、讲一下AJAX Request
-
-94、讲一下Cross-domain access
-
-95、介绍一下做过的项目
-
-96、问到了多个服务器怎么弄，架构之类的
-
-97、angular的渲染流程
-
-98、脏检查
-
-99、nodejs的架构、优缺点、回调
-
-100、css 盒模型
-
-101、css 布局，左边定宽右边自适应
-
-102、冒泡和捕获，事件流哪三个阶段？
-
-103、实现事件代理
-
-105、继承的两种方法
-
-106、ajax，原生ajax的四个过程
-
-107、闭包，简单说一个闭包的应用，然后闭包的主要作用是什么
-
-108、css:两个块状元素上下的margin-top和margin-bottom会重叠。啥原因？怎么解决？
-
-109、js：写一个递归。就是每隔5秒调用一个自身，一共100次
-
-110、cookie和session有什么区别
-
-111、网络分层结构
-
-112、你的不足是什么？
-
-113、做了那么多项目，有没有自己的归纳总结
-
-114、工程怎么进行文件管理
-
-115、less和sass掌握程度
-
-116、Cookie 是否会被覆盖，localStorage是否会被覆盖
-
-117、事件代理js实现
-
-118、Css实现动画效果
-
-119、Animation还有哪些其他属性
-
-120、Css实现三列布局
-
-121、Css实现保持长宽比1:1
-
-122、Css实现两个自适应等宽元素中间空10个像素
-
-123、requireJS的原理是什么
-
-124、如何保持登录状态
-
-125、浮动的原理以及如何清除浮动
-
-126、Html的语义化
-
-127、原生js添加class怎么添加，如果本身已经有class了，会不会覆盖，怎么保留？
-
-128、Jsonp的原理。怎么去读取一个script里面的数据？
-
-129、如果页面初始载入的时候把ajax请求返回的数据存在localStorage里面，然后每次调用的时候去localStorage里面取数，是否可行。
-
-130、304是什么意思？有没有方法不请求不经过服务器直接使用缓存
-
-131、http请求头有哪些字段
-
-132、数组去除一个函数。用arr.splice。又问splice返回了什么？应该返回的是去除的元素。
-
-133、js异步的方法（promise，generator，async）
-
-134、Cookie跨域请求能不能带上
-
-135、最近看什么开源项目？
-
-136、commonJS和AMD
-
-137、平时是怎么学习的？
-
-138、为什么要用translate3d？
-
-139、对象中key-value的value怎么再放一个对象？
-
-
-
-146、说说你对组件的理解
-
-147、组件的html怎么进行管理
-
-148、js的异步加载，promise的三种状态，ES7中的async用过么
-
-149、静态属性怎么继承
-
-150、js原型链的继承
-
-151、jquery和zepto有什么区别
-
-152、angular的双向绑定原理
-
-153、angular和react的认识
-
-154、MVVM是什么
-
-155、移动端是指手机浏览器，还是native，还是hybrid
-
-156、你用了移动端的什么库类和框架？
-
-157、移动端要注意哪些？
-
-158、适配有去考虑么，retina屏幕啊？
-
-159、rem是什么？em是什么？如果上一层就是根root了，em和rem等价么？
-
-160、怎么测试的？会自动化测试么？
-
-161、你觉得你什么技术最擅长？
-
-162、你平时有没有什么技术的沉淀？
-
-163、单向链表怎么查找有没有环？
-
-164、怎么得到一个页面的a标签？
-
-165、怎么在页面里放置一个很简单的图标，不能用img和background-img？
-
-166、正则表达式判断url
-
-167、怎么去除字符串前后的空格
-
-168、实现页面的局部刷新
-
-169、绝对定位与相对定位的区别
-
-170、js轮播实现思路
-
-171、使用js画一个抛物线，抛物线上有个小球随着抛物线运动，有两个按钮能使小球继续运动停止运动
-
-172、java五子棋，说下实现思路
-
-173、如何让各种情况下的div居中(绝对定位的div,垂直居中,水平居中)？
-
-174、display有哪些值？说明他们的作用
-
-175、css定义的权重
-
-176、requirejs实现原理
-
-177、requirejs怎么防止重复加载
-
-178、ES6里头的箭头函数的this对象与其他的有啥区别
-
-179、tcp/udp区别
-
-180、tcp三次握手过程
-
-181、xss与csrf的原理与怎么防范
-
-182、mysql与 MongoDB的区别
-
-183、w3c事件与IE事件的区别
-
-184、有没有上传过些什么npm模块
-
-185、IE与W3C怎么阻止事件的冒泡
-
-186、gulp底层实现原理
-
-187、webpack底层实现原理
-
-188、gulp与webpack区别
-
-189、vuejs与angularjs的区别
-
-190、vuex是用来做什么的
-
-191、说下你知道的响应状态码
-
-192、ajax的过程以及 readyState几个状态的含义
-
-193、你除了前端之外还会些什么？
-
-194、cookie与session的区别
-
-195、一些关于php与java的问题
-
-196、你觉得你哪个项目是你做的最好的
-
-197、说说你在项目中遇到了哪些困难,是怎么解决的
-
-198、前端优化你知道哪些
-
-199、webpack是用来干嘛的
-
-200、webpack与gulp的区别
-
-201、es6与es7了解多少
-
-202、说下你知道的响应状态码
-
-203、看过哪些框架的源码
-
-204、遇到过哪些浏览器兼容性问题
-
-205、清除浮动有哪几种方式,分别说说
-
-206、你知道有哪些跨域方式,分别说说
-
-207、JavaScript有哪几种类型的值
-
-208、使用 new操作符时具体是干了些什么
-
-209、学习前端的方法以及途径
-
-210、怎么实现两个大整数的相乘，说下思路
-
-211、你学过数据结构没,说说你都了解些什么
-
-212、你学过计算机操作系统没,说说你都了解些什么
-
-213、你学过计算机组成原理没,说说你都了解些什么
-
-214、你学过算法没,说说你都了解些什么
-
-215、说下选择排序,冒泡排序的实现思路
-
-216、用过哪些框架
-
-217、让你设计一个前端css框架你怎么做
-
-218、了解哪些设计模式说说看
-
-219、说下你所了解的设计模式的优点
-
-220、vue源码结构
-
-221、状态码
-
-222、浏览器缓存的区别
-
-223、304与200读取缓存的区别
-
-224、http请求头有哪些,说说看你了解哪些
-
-225、js中this的作用
-
-226、js中上下文是什么
-
-227、js有哪些函数能改变上下文
-
-228、你所了解的跨域的方法都说说看你了解的？
-
-229、要是让你自己写一个js框架你会用到哪些设计模式
-
-230、平常在项目中用到过哪些设计模式,说说看
-
-231、一来给了张纸要求写js自定义事件
-
-232、前端跨域的方法
-
-233、call与apply的区别
-
-234、h5有个api能定位你知道是哪个吗？
-
-235、vue与angularjs中双向数据绑定是怎样实现的？
-
-236、webpack怎样配置？
-
-237、nodejs中的文件怎么读写？
-
-238、link和@import有什么区别？
-
-239、cookies，sessionStorage 和 localStorage 的区别
-
-240、看过哪些前端的书？平时是怎么学习的
-
-241、说下你所理解的mvc与mvvc
-
-242、position有哪些值,说下各自的作用
-
-243、写个从几个li中取下标的闭包代码
-
-244、你的职业规划是怎么样的？
-
-245、移动端性能优化
-
-246、lazyload如何实现
-
-247、点透问题
-
-248、前端安全
-
-249、原生js模板引擎
-
-250、repaint和reflow区别
-
-251、requirejs如何避免循环依赖？
-
-252、实现布局：左边一张图片，右边一段文字（不是环绕）
-
-253、window.onload和$(document).ready()的区别，浏览器加载转圈结束时哪个时间点？
-
-254、form表单当前页面无刷新提交 target iframe
-
-255、setTimeout和setInterval区别，如何互相实现？
-
-256、如何避免多重回调—promise，promise简单描述一下，如何在外部进行resolve()
-
-257、margin坍塌？水平方向会不会坍塌？
-
-258、伪类和伪元素区别
-
-259、vue如何实现父子组件通信，以及非父子组件通信
-
-260、数组去重
-
-261、使用flex布局实现三等分，左右两个元素分别贴到左边和右边，垂直居中
-
-262、平时如何学前端的，看了哪些书，关注了哪些公众号
-
-263、实现bind函数
-
-264、数组和链表区别，分别适合什么数据结构
-
-265、对mvc的理解
-
-266、描述一个印象最深的项目，在其中担任的角色，解决什么问题
-
-267、http状态码。。。401和403区别？
-
-268、描述下二分查找
-
-269、为什么选择前端，如何学习的，看了哪些书，《js高级程序设计》和《你不知道的js》有什么区别，看书，看博客，看公众号三者的时间是如何分配的？
-
-270、如何评价BAT？
-
-271、描述下在实习中做过的一个项目，解决了什么问题，在其中担任了什么角色？这个过程存在什么问题，有什么值得改进的地方？
-
-272、如何看待加班，如果有个项目需要连续一个月加班，你怎么看？
-
-273、遇到的压力最大的一件事是什么？如何解决的？
-
-274、平时有什么爱好
-
-275、自身有待改进的地方
-
-276、n长的数组放入n+1个数，不能重复，找出那个缺失的数
-
-277、手里有什么offer
-
-278、你对于第一份工作最看重的三个方面是什么？
-
-279、如何评价现在的前端？
-
-280、用原生js实现复选框选择以及全选非全选功能
-
-281、用4个颜色给一个六面体上色有多少种情况
-
-282、amd和cmd区别
-
-283、为什么选择前端，移动端性能优化
-
-284、vue的特点？双向数据绑定是如何实现的
-
-285、Object.defineProperty
-
-286、算法题：数组去重，去除重复两次以上的元素，代码题：嵌套的ul-li结构，根据input中输入的内容，去除相应的li节点，且如果某个嵌套的ul下面的li都被移除，则该ul的父li节点也要被移除
-
-287、页面加载过程
-
-288、浏览器如何实现图片缓存
 ### 1、使用typeof bar ===“object”来确定bar是否是一个对象时有什么潜在的缺陷？这个陷阱如何避免？
 
 尽管typeof bar ===“object”是检查bar是否是对象的可靠方法，但JavaScript中令人惊讶的问题是*null*也被认为是一个对象！
