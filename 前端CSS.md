@@ -26,15 +26,89 @@ Inherit
     B：不同点：
     **float仍会占据位置，position会覆盖文档流中的其他元素,可层叠**。
     float使用clear:both，position使用position:static清除
+常见兼容性
+--------
+    * png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.也可以引用一段脚本处理.
+    * 浏览器默认的margin和padding不同。解决方案是加一个全局的*{margin:0;padding:0;}来统一。
+    * IE6双边距bug:块属性标签float后，又有横行的margin情况下，在ie6显示margin比设置的大。
+    * 浮动ie产生的双倍距离（IE6双边距问题：在IE6下，如果对元素设置了浮动，同时又设置了margin-left或margin-right，margin值会加倍。）
+      #box{ float:left; width:10px; margin:0 0 0 100px;} 
+     这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——_display:inline;将其转化为行内属性。(_这个符号只有ie6会识别)
+    *  渐进识别的方式，从总体中逐渐排除局部。 
+      首先，巧妙的使用“\9”这一标记，将IE游览器从所有情况中分离出来。 
+      接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。
+      css
+          .bb{
+           background-color:#f1ee18;/*所有识别*/
+          .background-color:#00deff\9; /*IE6、7、8识别*/
+          +background-color:#a200ff;/*IE6、7识别*/
+          _background-color:#1e0bd1;/*IE6识别*/ 
+          } 
+    
+    *  IE下,可以使用获取常规属性的方法来获取自定义属性,
+       也可以使用getAttribute()获取自定义属性;
+       Firefox下,只能使用getAttribute()获取自定义属性. 
+       解决方法:统一通过getAttribute()获取自定义属性.
+    
+    * IE下,event对象有x,y属性,但是没有pageX,pageY属性; 
+      Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.
+    
+    * 解决方法：（条件注释）缺点是在IE浏览器下可能会增加额外的HTTP请求数。
+    
+    * Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示, 
+      可通过加入 CSS 属性 -webkit-text-size-adjust: none; 解决.
+    
+    * 超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序:
+    L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}
+    
+    * 怪异模式问题：漏写DTD声明，Firefox仍然会按照标准模式来解析网页，但在IE中会触发怪异模式。为避免怪异模式给我们带来不必要的麻烦，最好养成书写DTD声明的好习惯。现在可以使用[html5](http://www.w3.org/TR/html5/single-page.html)推荐的写法：`<doctype html>`
+    
+    * 上下margin重合问题
+    ie和ff都存在，相邻的两个div的margin-left和margin-right不会重合，但是margin-top和margin-bottom却会发生重合。
+    解决方法，养成良好的代码编写习惯，同时采用margin-top或者同时采用margin-bottom。
+    * ie6对png图片格式支持不好(引用一段脚本处理)
 
+    
+## css浮动
+    浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。
+    1.使用空标签清除浮动。
+       这种方法是在所有浮动标签后面添加一个空标签 定义css clear:both. 弊端就是增加了无意义标签。
+    2.使用overflow。
+       给包含浮动元素的父标签添加css属性 overflow:auto; zoom:1; zoom:1用于兼容IE6。
+    3.使用after伪对象清除浮动。
+       该方法只适用于非IE浏览器。具体写法可参照以下示例。使用中需注意以下几点。一、该方法中必须为需要清除浮动元素的伪对象中设置 height:0，否则该元素会比实际高出若干像素；
+
+## 浮动问题和解决
+    浮动元素引起的问题：
+    （1）父元素的高度无法被撑开，影响与父元素同级的元素
+    （2）与浮动元素同级的非浮动元素（内联元素）会跟随其后
+    （3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构
+解决方法：
+使用`CSS`中的`clear:both`;属性来清除元素的浮动可解决2、3问题，对于问题1，添加如下样式，给父元素添加`clearfix`样式：
+
+    .clearfix:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+    .clearfix{display: inline-block;} /* for IE/Mac */
+
+## 清除浮动的几种方法：
+    1，额外标签法，<div style="clear:both;"></div>（缺点：不过这个办法会增加额外的标签使HTML结构看起来不够简洁。）
+    2，使用after伪类
+    #parent:after{
+        content:".";
+        height:0;
+        visibility:hidden;
+        display:block;
+        clear:both;
+        }
+    3,浮动外部元素
+    4,设置`overflow`为`hidden`或者auto
 ## 清除浮动
 * clear:both
 * position使用position:static
 * display:table
 * overflow:auto
 * 全部一起浮动。。。
-### CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？
-   
+
+### CSS选择符，属性继承，优先级算法， CSS3伪类
     1.id选择器（ # myid）
     2.类选择器（.myclassname）
     3.标签选择器（div, h1, p）
@@ -56,7 +130,6 @@ Inherit
 ---
     !important >  id > class > tag  
     important 比 内联优先级高,但内联比 id 要高
-
 CSS3新增伪类举例：
 ---
     p:first-of-type 选择**属于其父元素**的首个 <p> 元素的 <p> 元素。
@@ -67,20 +140,15 @@ CSS3新增伪类举例：
     :enabled  :disabled 控制表单控件的禁用状态。
     :checked 单选框或复选框被选中。
 ### position的值， relative和absolute分别是相对于谁进行定位的？
-
     absolute 
             生成绝对定位的元素，相对于最近一级的定位**不是 static**的父元素来进行定位。
-
     fixed （老IE不支持）
         生成绝对定位的元素，相对于浏览器窗口进行定位。 
-
     relative 
         生成相对定位的元素，相对于其在普通流中的位置进行定位。 
-
     static  默认值。没有定位，元素出现在正常的流中
 
-### CSS3有哪些新特性？
-
+### CSS3有哪些新特性
     CSS3实现圆角（border-radius），阴影（box-shadow），
     对文字加特效（text-shadow、），线性渐变（gradient），旋转（transform）
     transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg);//旋转,缩放,定位,倾斜
@@ -89,7 +157,7 @@ CSS3新增伪类举例：
     媒体查询，多栏布局
     border-image
 
-### XML和JSON的区别？
+### XML和JSON的区别
     (1).数据体积方面。
     JSON相对于XML来讲，数据的体积小，传递的速度更快些。
     (2).数据交互方面。
