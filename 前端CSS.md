@@ -10,8 +10,8 @@
   
 ## Position定位:
 ### 绝对定位（**脱离文档流**）：
-Fixed：相对于窗口进行定位；可以通过z-index进行层次分级。可层叠
-Absolute：相对于第一个不是static定位的父元素定位。可以通过z-index进行层次分级。可层叠
+Fixed：绝对定位于窗口；可以通过z-index进行层次分级。可层叠
+Absolute：绝对定位于第一个不是static定位的父元素。可以通过z-index进行层次分级。可层叠
 ### 相对定位（**不脱离文档流**）：
 Relative：相对于**原来的位置**定位。不可层叠
 ### 没有定位（不能使用top、left、rigth、bottom、z-index）：
