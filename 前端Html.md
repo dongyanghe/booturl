@@ -181,3 +181,10 @@ AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。Ajax 
 ready 事件的触发，表示文档结构已经加载完成（不包含图片等非文字媒体文件）。
 
 onload 事件的触发，表示页面包含图片等文件在内的所有元素都加载完成。
+
+### 兼容
+#### IE9使用Number 对象的 parseInt 和 parseFloat 方法
+```TypeScript
+if (!Number.parseInt) Number.parseInt = window.parseInt
+if (!Number.parseFloat) Number.parseInt = window.parseFloat
+```
