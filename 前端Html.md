@@ -183,8 +183,124 @@ ready 事件的触发，表示文档结构已经加载完成（不包含图片�
 onload 事件的触发，表示页面包含图片等文件在内的所有元素都加载完成。
 
 ### 兼容
-#### IE9使用Number 对象的 parseInt 和 parseFloat 方法
-```TypeScript
-if (!Number.parseInt) Number.parseInt = window.parseInt
-if (!Number.parseFloat) Number.parseInt = window.parseFloat
-```
+1. IE9使用Number 对象的 parseInt 和 parseFloat 方法
+    ```TypeScript
+    if (!Number.parseInt) Number.parseInt = window.parseInt
+    if (!Number.parseFloat) Number.parseInt = window.parseFloat
+    ```
+1. 字体
+    字体文件类型：不同浏览器支持的不一样，不同字体文件大小不一样
+    字体图标：
+1. Html和Css
+    1. 透明颜色不能使用十六进制（UC、ie、猎豹等不兼容）必须转换成RGB(只有ie8及其以下不兼容)
+    ```css
+        //  ie8及其以下颜色透明方法
+        filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000);
+        background:  url(about:blank);  //  空白背景
+    ```
+    1. display:flex兼容不了ie9
+    1. IE需要设置行高
+    1. IE的postion: abslout;对齐会受margin影响
+    1. 字体换行不同类型语言需要专门设置
+    1. 各浏览器默认样式覆盖（`element-ui`、`normalize.css`已经做了）
+       1. 盒子布局
+       2. 默认字体大小
+       3. 自定义超链接按钮被点击访问过的超链接样式不在具有hover和active
+
+            ```css
+              <!-- 使用以下顺序定义 -->
+              a:link {} a:visited {} a:hover {} a:active {}
+            ```
+
+    1. 表单
+        1. 按钮、input、select的基本样式和状态样式不统一
+        2. input三种状态交互不统一：
+
+            浏览器|default|readonly|disabled
+            ------------ | ------------- | ------------- | -------------
+            chrome | 有光标，可选中 | 没有光标，可选中 | 有背景颜色，没有光标，可选中
+            firfox | 有光标，可选中 | 没有光标，可选中 | 有背景颜色，没有光标，不可选中
+            ie | 有光标，可选中 | 有光标，可选中 | 有背景颜色，没有光标，可选中
+
+    1. 滚动条
+        1. 各浏览器滚动条宽度不一致
+        1. ie下设置margin为负值时会有问题？
+        1. 尽量使用默认滚动条，大部分滚动条兼容性差，以下插件兼容最好：
+              1. `el-scrollbar` >=ie9 （目前使用这个）
+              1. `jquery-custom-content-scroller` >=ie8
+          > 会改变了原html布局和样式，关联坐标的事件和样式需重写
+    1. 样式渐进分离（使用`postcss`插件会自动完善）
+1. 浏览器权限
+    1. 复制文本
+        1. IE：
+            1. ie需要用户援权，但js无法得知是否援权了
+            2. ie复制失败也会判断成成功
+        2. 手机平板
+            1. 长按事件会被各浏览器覆盖，建议改成点击复制
+    2. ie GPS定位需要用户援权？
+1. 第三方插件兼容
+    需在官网确认插件本身及其关联插件兼容性，并**添加在下面的`第三方插件`里面**
+
+1. 事件触发
+    1. 右键
+        1. ie右键有些el组件无法触发
+    1. safari8不兼容vue的mouseenter事件
+1. es6语法和浏览器特有接口兼容（会编译成es5（ie9部分支持）、已使用`babel-polyfill`插件）
+1. 打印
+1. javascript
+    1. Safari浏览器的new Date(str),其中str的"-"需转换成"/"
+    2. ie9及以下需要`babel-polyfill`加入打包支持es6
+    3. ie9单文件最大行数超过一定限制将不再读取后边的内容...
+1. 浏览器特有函数调用
+    1. 先判断浏览器类型
+    2. 接口包涵在`try {}catch(e){}`里面
+1. 数据存储
+    1. 不使用cookie，存储个数和每个存储大小不定，每次请求都会传输
+    2. **localStorage存储大小建议控制在<=4.5M以内**
+
+          ```cmd
+              Edge：5110KB
+              Chrome 74.0：5110KB
+              IE 9          > 4999995 + 5 = 5000KB
+              firefox 22.0  > 5242875 + 5 = 524KB
+              chrome  28.0  > 2621435 + 5 = 262KB
+              safari  5.1   > 2621435 + 5 = 262KB
+              opera   12.15 > 5M （超出则会弹出允许请求更多空间的对话框）
+          ```
+2. - IE11访问空白
+        ```cmd
+        SCRIPT1003: 缺少":"
+        chunk-vendors-1.0.0.1563881522362.js (22,616125)
+        ```
+        原因：`babel-polyfill`未完整使用、第三方插件导入方式不正确
+        解决：
+            1. 修改polyfill配置，支持按需加载，减少打包后的大小
+            2. 例如:将`import 'element-ui/xxx'`改为直接导入`import 'element-ui'`试一试
+3. - Safari会上滑下拉页面会出现灰色背景
+        根节点设置为隐藏滚动
+        ```css
+          body,html{
+            overflow: hidden;
+          }
+          ```
+4. - IE10整个界面无法点击
+        原因：`watermark`使用的CSS属性`pointer-events: none`在ie9——ie10无法穿透事件
+5. - IE接口请求基本都会被缓存
+      **接口设置了一秒缓存，如果要实时返回请在请求后面加时间戳**
+      ```TypeScript
+      config.headers['Cache-Control'] = 'max-age=1, must-revalidate'
+      ```
+6. - [ ] IE9 样式不一致
+    
+        右侧已选菜单字体白色
+        ```css
+        .sidebar :not(.el-menu--collapse).el-menu-vertical-demo .el-submenu .el-menu--inline .el-menu-item:hover, .sidebar :not(.el-menu--collapse).el-menu-vertical-demo .el-submenu .el-menu--inline .el-menu-item:focus, .sidebar :not(.el-menu--collapse).el-menu-vertical-demo .el-submenu .el-menu--inline .is-active.el-menu-item {
+          color: #fff !important
+        }
+        ```
+
+        整体背景色丢失
+        ```css
+        
+        ```
+> "？"代表未确定
