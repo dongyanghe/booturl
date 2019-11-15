@@ -90,7 +90,7 @@ https://cn.vuejs.org/v2/guide/typescript.html
       /**
        * 组件销毁之前
        * 1. 解绑自己添加的事件监听($on|addEventListener|setInterval|addListener)
-       * 1. 关闭定时器
+       * 2. 关闭定时器
        * 可以使用data和method
        */
       beforeDestroy() {
