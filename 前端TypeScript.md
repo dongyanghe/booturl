@@ -63,17 +63,12 @@ prototype 使您有能力向对象添加属性和方法。
 concat() 连接两个或更多的数组，并返回结果。
 join() 把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。
 pop() 删除并返回数组的最后一个元素。  
-shift() 删除并返回数组的第一个元素
-push() 向数组的末尾添加一个或更多元素，并返回新的长度。
-unshift() 向数组的开头添加一个或更多元素，并返回新的长度。
 reverse() 颠倒数组中元素的顺序。
 slice(start, end) 从某个已有的数组返回选定的元素,不传值可用于拷贝所有
 sort() 对数组的元素进行排序
 splice() 删除元素，并向数组添加新元素。
 toSource() 返回该对象的源代码。
 toString() 把数组转换为字符串，并返回结果。
-toLocaleString() 把数组转换为本地数组，并返回结果。
-valueOf() 返回数组对象的原始值
 * 增
     * 【Array.concat(...array1: Array): Array】：不改变原数组，返回数组与多个数组合并出的新数组
     * 【Array.slice(start: Number,end: Number): Array】：不改变原数组，返回start到end范围的新数组，第一个下标是0
@@ -83,10 +78,10 @@ valueOf() 返回数组对象的原始值
     * 【Array.shift(): any】：改变原数组，移除第一个元素并将其返回
     * 【Array.pop(): any】：改变原数组，移除最后一个元素并将其返回
 * 改
-    * 【array.splice(index,howmany,item1?,.....,itemX?):】：改变原数组，返回的是含有被删除的元素的数组，从index（从0开始数，包括index）下标开始，删除howmany（0为删除全部）个元素，并在index位置插入item1及其之后的元素；也可以只传入一个数字参数，更改原数组长度
+    * 【array.splice(index,howmany,item1?,.....,itemX?)】：改变原数组，返回的是含有被删除的元素的数组，从index（从0开始数，包括index）下标开始，删除howmany（0为删除全部）个元素，并在index位置插入item1及其之后的元素；也可以只传入一个数字参数，更改原数组长度
     * 【Array.reverse():Array】：改变原数组，将数组反转，并返回反转后的数组
     * 【array.push(item1, item2, ..., itemX)】：改变原数组，再数组后面插入元素
-    * 【Array.sort(callBackFun?: Function(now: any, next: any): number): Array】：改变原数组，返回排序后的数组，无回调参数时默认为按照字符编码的顺序进行排序;的返回小于0则now排前面，等于0则不变
+    * 【Array.sort((now: any, next: any): Array => {})】：改变原数组，返回排序后的数组，无回调参数时默认为按照字符编码的顺序进行排序;的返回小于0则now排前面，等于0则不变
     * 【array.fill(value, start, end)】：改变原数组，将一个固定值替换数组的元素。
     * 【array.copyWithin(target, start, end)】：改变原数组，从数组的指定位置拷贝元素到数组的另一个指定位置中。
 * 查
@@ -94,16 +89,18 @@ valueOf() 返回数组对象的原始值
     * 【Array.includes(value, start): Boolean】：不改变原数组，如果value在数组start位置后有出现内返回true（NaN也能判断为true）
     * 【Array.LastIndexOf(value: String,start: Number): Number】：不改变原数组，返回value出现的最后一个位置，start为开始查询的位置，下标从0开始，找不到返回-1
     * 【Array.forEach((val: any, index: Number, array: Array), thisValue)】：不改变原数组，循环遍历，特点是array是地址传递，其他是值传递,空数组是不会执行回调函数
-    * 【Array.map(function(currentValue,index,arr), thisValue): Array】：不改变原数组，返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值，回调函数需return。跟forEach一样array是地址传递，其他是值传递,空数组是不会执行回调函数
-    * 【array.filter(function(currentValue,index,arr), thisValue): Array】：不改变原数组，返回过滤后的数组
-    * 【array.find(function(currentValue,index,arr), thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的值，找到后就不在回调。
-    * 【array.findIndex(function(currentValue,index,arr), thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的索引，找到后就不在回调。
-    * 【every(function(currentValue,index,arr): Boolean) 方法用于检测数组所有元素是否都符合指定条件，空数组不执行
+    * 【Array.map((currentValue,index,arr) => {}, thisValue): Array】：不改变原数组，返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值，回调函数需return。跟forEach一样array是地址传递，其他是值传递,空数组是不会执行回调函数
+    * 【array.filter((currentValue,index,arr) => {}, thisValue): Array】：不改变原数组，返回过滤后的数组
+    * 【array.find((currentValue,index,arr) => {}, thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的值，找到后就不在回调。
+    * 【array.findIndex((currentValue,index,arr) => {}, thisValue): any】：不改变原数组，返回通过测试（函数内判断）的数组的第一个元素的索引，找到后就不在回调。
+    * 【every((currentValue,index,arr): Boolean => {})】：方法用于检测数组所有元素是否都符合指定条件，空数组不执行
+    * 【valueOf()】：返回数组对象的原始值
 * 存
 * 传
 * 转
-    * 【Array.join(String): String】：不改变原数组，返回以string为间隔合并起来的字符串
-    * 【Array.toString(): String】：不改变原数组，返回以“,”为间隔合并起来的字符串
+    * 【Array.join(String): String】：不改变原数组，返回以string为间隔合并起来的字符串，arr.join() === arr.toLocaleString()。
+    * 【Array.toString(): String】：不改变原数组，返回以“,”为间隔合并起来的字符串，arr.toString() === arr.toLocaleString()。
+    * 【toLocaleString(): String】 把数组转换为本地数组，并返回结果，arr.toLocaleString() === arr.join()。
 * 量
     * length属性：返回数组长度
 * 态

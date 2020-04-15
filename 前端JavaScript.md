@@ -1517,13 +1517,17 @@ jQuery对象是一个特殊的集合对象。即使只有一个元素，jQuery�
 1. 地址传递和值传递
 1. 各级递归时同步的，未递归完成时不会return
 ```TypeScript
- function fact(num) {
+function fact(num) {
     if (num <= 1) {
-        return 1;             
+        console.log(1)            
     } else {
-        return num * fact(num - 1);            
+      console.log(num * fact(num - 1))          
     }
-} 
+}
+fact(3)
+// 1  //  等最底层执行完后再执行上一层
+// NaN
+// NaN
 ```
 以下代码可导致出错：
 ```TypeScript
