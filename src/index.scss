@@ -1,0 +1,111 @@
+@charset "UTF-8";
+@import "../assets/styles/_global";
+/** 兼容处理 ************************************************************************************/
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+/** 字体 ************************************************************************************/
+/* 
+ttf:在 Mac 和 Windows 操作系统,ie10>
+otf:在 Macintosh 和 Windows 系统上使用
+WOFF WOFF2：都支持 
+以下字体理论兼容（理论，未测试）
+Chrome	Safari	Firefox	Opera	IE	Android	iOS
+3.5+	3+	3.5+	10.1+	6+	2.2+	3.1+ 
+*/
+@font-face {
+    font-family: "PingFang-SC";
+    src: url("../assets/styles/font/PingFang-SC.woff2") format("woff2"),
+         url("../assets/styles/font/PingFang-SC.woff") format("woff"),
+         url("../assets/styles/font/PingFang-SC.ttf") format("truetype"),
+         url("../assets/styles/font/PingFang-SC.eot") format("embedded-opentype"),
+         url("../assets/styles/font/PingFang-SC.svg") format("svg"),
+         url("../assets/styles/font/PingFang-SC.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "DINAlternate-Bold";
+    src: url("../assets/styles/font/DINAlternate-Bold.woff2") format("woff2"),
+         url("../assets/styles/font/DINAlternate-Bold.woff") format("woff"),
+         url("../assets/styles/font/DINAlternate-Bold.ttf") format("truetype"),
+         url("../assets/styles/font/DINAlternate-Bold.eot") format("embedded-opentype"),
+         url("../assets/styles/font/DINAlternate-Bold.svg") format("svg"),
+         url("../assets/styles/font/DINAlternate-Bold.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SourceHanSansCN-Regular";
+    src: url("../assets/styles/font/SourceHanSansCN-Regular.woff2") format("woff2"),
+         url("../assets/styles/font/SourceHanSansCN-Regular.woff") format("woff"),
+         url("../assets/styles/font/SourceHanSansCN-Regular.ttf") format("truetype"),
+         url("../assets/styles/font/SourceHanSansCN-Regular.eot") format("embedded-opentype"),
+         url("../assets/styles/font/SourceHanSansCN-Regular.svg") format("svg"),
+         url("../assets/styles/font/SourceHanSansCN-Regular.otf") format("opentype");
+         font-weight: normal;
+         font-style: normal;
+}
+/** 页面布局 ************************************************************************************/
+.layout {
+    dispaly: flex;
+    min-width: 1200px;
+    .left {
+        flex-basis: 250px;
+        background: blue;
+    }
+    .right {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: red;
+        .main {
+            background: green;
+        }
+        .footer {
+            margin-top: auto;
+            flex-shrink: 0;
+            height: 30px;
+            background: yellow;
+        }
+    }
+}
+/** 盒子模型 ************************************************************************************/
+.box {
+    position: relative;
+    width: 613px;
+    height: 240px;
+    margin: 10px 10px;
+    user-select: none; // background: #ffffff33;
+    border-radius: $box-border-radius;
+    float: left;
+    color: #ffffff;
+    overflow: hidden;
+    >.box-header {
+        width: 100%;
+        height: $box-header-height;
+        overflow: hidden;
+    }
+    >.box-body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    >.box-footer {
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+/** 主体样式 ************************************************************************************/
+
+html {
+    box-sizing: border-box;
+    body {
+    }
+}
+/**************************************媒体查询和动效**********************************/

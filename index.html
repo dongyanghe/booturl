@@ -7,54 +7,10 @@
 </head>
 
 <body>
-    本项目内容见顶部文件目录（废话）
-    以下是本人测试代码，没什么意义，请忽略！
-    <hr>
-    <br>
-    <tr></tr>
-    <dl>
-        <dt>Coffee</dt>
-        <dd>Black hot drink</dd>
-        <dt>Milk</dt>
-        <dd>White cold drink</dd>
-    </dl>
+    
 </body>
-<script>
-    var foo = [1, 2, 3];
-    (function (foo) {
-        var foo;
-        console.log(foo[0]);
-        foo[0] = 3;
-        foo = [4];
-        console.log(foo[0]);
-    })(foo);
-    console.log(foo[0]);
 
+<style lang="scss">
 
-    //  冒泡排序
-    var arr = [3, 2, 1];
-    for (var i = 0; i < arr.length - 1; i++) {
-        for (var k = i + 1; k < arr.length; k++) {
-            var next = arr[k];
-            if (now > next) {
-                arr[k] = arr[i];
-                arr[i] = next;
-            }
-        }
-    }
-    var myObject = {
-        foo: "bar",
-        func: function () {
-            var self = this; 
-            console.log("outer func:  this.foo = " + this.foo); 
-            console.log("outer func:  self.foo = " + self.foo);
-            (function () {
-                console.log("inner func:  this.foo = " + this.foo);
-                 console.log("inner func:  self.foo = " + self.foo);
-            }());
-        }
-    };
-    myObject.func();
-</script>
-
+</style>
 </html>

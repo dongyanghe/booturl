@@ -215,3 +215,39 @@ CSS3新增伪类举例：
     -webkit-box-shadow:0 0 0px 1000px #fff inset;
 }
 ```
+## 页面布局
+
+
+> https://juejin.cn/post/6932647134944886797
+### 全屏左侧底部固定布局
+```html
+<div class="layout">
+    <div class="left"></div>
+    <div class="right">
+        <div class="main"></div>
+        <div class="footer"></div>
+    </div>
+</div>
+```
+```scss
+.layout {
+    dispaly: flex;
+    min-width: 1200px;
+    .left {
+        flex-basis: 250px;
+    }
+    .right {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        .main {
+
+        }
+        .footer {
+            margin-top: auto;
+            flex-shrink: 0;
+            height: 30px;
+        }
+    }
+}
+```

@@ -1,54 +1,77 @@
-# booturl（路径向导）
-https://gitee.com/jikold 
-### 项目介绍
-[我的processon首页](https://www.processon.com/u/556bcbf6e4b03f9cd579c4bb)
 
-### 文件路径:
-    内容见顶部文件目录↑↑↑（废话）
-### 本项目的思维导图：
-![image.png](https://upload-images.jianshu.io/upload_images/5138592-ffba45bfee51da1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/5138592-987b39aa5f7cea7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/5138592-8c6f901facbd3e47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/5138592-2bf3c2ce806f0eb9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-具体地址（可免费复制修改）：
-* [JavaScript](https://www.processon.com/view/link/5b51ba9ae4b067df59e3a2ce)
-* [设计模式 编程思想](https://www.processon.com/view/link/5ba4cdd6e4b08faf8c6053dc)
-* [AngularX](https://www.processon.com/view/link/5ba4cec7e4b0fe81b64214bc)
-* [Angular1](https://www.processon.com/view/link/59e95808e4b08b9e917ea9f7)
-* [Html](https://www.processon.com/view/link/5b51bae1e4b025cf491fccc0)
-* [React](https://www.processon.com/view/link/5ba4cf2ee4b0fe81b6421506)
-* [J2EE](https://www.processon.com/view/link/5ba4d018e4b0534c9be722e5)
-* [java基础](https://www.processon.com/view/link/5ba4d049e4b08faf8c6055a9)
-### 内容排序：
-    从上到下：常见→不常见 困难→简单
-#### 参与贡献
+## 开发
+    运行npm run dev
+## 发布
+    运行npm run prod
+## 测试
+### 测试目标
+1.生成各种边界数据（最大、最小、中间值、0、负数、空字符串、null、1——3位小数刚好四舍五入两种值、整数、空数组、一个长度数组、多个长度数组、最大长度数组、超出长度数组...）
+2.证明数据位置是否与名称对应，顺序是否正确
+3.模拟后端数据推送的频率
+4.截图保留界面结果
+### 插件工具
+#### Karma
 
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+#### jasmine
+    测试框架
+#### protractor
+    基于Jasmine的测试工具
 
-### 部分内容来源
-* JavaScript:
-    > https://blog.csdn.net/wdlhao/article/details/79079660
-    > https://blog.csdn.net/qq_22944825/article/details/78169321
-    > http://web.jobbole.com/94523/
-    > http://web.jobbole.com/95078/
-    > https://github.com/BearD01001/front-end-QA-to-interview
-    > https://blog.csdn.net/zxf13598202302/article/details/53517871
-    > https://blog.csdn.net/qq_25186543/article/details/78456984?utm_source=copy 
-    > https://blog.csdn.net/Girl_0919/article/details/76359963
-* Angular
-    > https://www.cnblogs.com/mfmdaoyou/p/7389012.html
-* React
-    > https://blog.csdn.net/sinat_17775997/article/details/69938720?utm_source=copy 
-    > https://www.imooc.com/article/23647?block_id=tuijian_wz
-    > https://blog.csdn.net/u013510838/article/details/60744715?utm_source=copy 
-    > https://www.zhihu.com/question/60548673/answer/177682784
-* 设计模式
-    > https://blog.csdn.net/mayan_fe/article/details/8572003?utm_source=copy 
-    > http://www.cnblogs.com/xianyulaodi/p/5827821.html
-* TypeScript
-    > https://www.jianshu.com/u/4d7dd4c7e51d
----
-前端知识点——路径向导
+#### webdriver-manager
+    测试服务器
+    先下载文件：webdriver-manager update
+    在命令行控制台启动服务器：webdriver-manager start
+    默认情况下，Selenium测试服务器接入地址为：http://localhost:4444/wd/hub
+
+#### protractor-jasmine2-html-reporter
+    输出html报告插件
+
+#### jasmine-reporters
+    输出junit格式的xml报告
+
+## 发布
+    1. 修改src\common\CONFIG.ts的serviceType和version值
+    2. 搜索"@defect"、"@test"解决遗留问题注释测试代码
+    3. 检查svn代码与上一版本各个文件的改动
+    4. 提交svn
+    5. 运行npm run prod
+    6. 打开编译后的网页检查
+
+## 字体
+font.zip压缩包有完整字体
+assets\styles\font\font.html用于指定压缩后需要保留的文字
+[字体格式转换](https://www.fontke.com/tool/fontface/)
+[字体压缩](http://everyfont.enjoyfe.com/)
+
+
+## 2.1.0版本
+### BUG：
+------
+- [x] 字体压缩
+- [x] 数字动效高度控制
+- [x] 数字动效加速
+- [x] 滚动条增加问题
+- [x] 退出框
+- [x] 兼容提示框
+- [x] 尺寸提示框
+- [x] 单位位置计算
+- [x] 圆点触发
+- [x] 折线聚集阴影
+- [x] 实时投递滚动
+- [x] 位置和间隙调整
+- [x] Y轴单位控制
+- [x] 排名动态宽度
+- [x] 蜘蛛图字体颜色
+- [x] 滚动条放大隐藏
+- [x] 单位四舍五入
+- [x] Echart滚动只有2个
+- [x] Echart的Y轴单位
+- [x] UC浏览器颜色兼容问题
+- [x] UC浏览器Flex兼容问题
+- [x] 地图弹窗内容高度问题
+- [ ] ~~Y轴长度加长~~
+- [x] css分离
+- [x] 环保金滚动提示混乱
+- [ ] @media媒体查询没有针对不同分辨率的屏幕
+- [ ] 字体图片登录页预加载
+- [ ] 图片去文字

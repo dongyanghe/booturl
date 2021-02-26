@@ -1,0 +1,7 @@
+//  webpack会自动调用.babelrc里的babel配置选项
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": [
+        "syntax-dynamic-import"
+    ]
+}

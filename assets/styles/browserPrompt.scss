@@ -1,0 +1,152 @@
+@charset "UTF-8";
+/**判断ie兼容性的弹窗提示样式**/
+#compatible-prompt {
+    color: #ffffff;
+    font-size: 14px;
+    overflow: hidden;
+    width: 850px;
+    height: 320px;
+    top: 50px;
+    margin-left: calc(50% - 425px);
+    position: fixed;
+    z-index: 99999999;
+    background: #181747;
+    background: -webkit-gradient(linear, 0 50%, 100% 0%, from(#2f387e), to(#181747));
+    .modal-title {
+      margin: 0;
+      line-height: 1.52857143;
+    }
+    .alert {
+      padding: 8px;
+      margin-bottom: 21px;
+      border: 1px solid transparent;
+      border-radius: 0px;
+    }
+    .alert-danger {
+      color: #fff;
+      background-color: #e2599c;
+      background: -webkit-gradient(linear, 0 50%, 100% 0%, from(#654da7), to(#e2599c));
+      hr {
+        border-top-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+    .browser {
+      text-align: center;
+      a {
+        border: 0px;
+        display: inline-block;
+        margin: 0 20px;
+        color: #ffffff;
+        width: 100px;
+        height: 130px;
+        &:nth-of-type(1) {
+          background: url(../images/browser/360.png) center center no-repeat;
+        }
+        &:nth-of-type(2) {
+          background: url(../images/browser/google.png) center center no-repeat;
+        }
+        &:nth-of-type(3) {
+          background: url(../images/browser/firefox.png) center center no-repeat;
+        }
+        &:nth-of-type(4) {
+          background: url(../images/browser/qq.png) center center no-repeat;
+        }
+        &:nth-of-type(5) {
+          background: url(../images/browser/sogo.png) center center no-repeat;
+        }
+      }
+      img {
+        border: 0px;
+      }
+    }
+    .btn-line {
+      width: 100%;
+      height: auto;
+      text-align: center;
+      .btn {
+        display: block;
+        margin: 50px auto;
+        border-radius: 5px;
+        width: 200px;
+        height: 40px;
+        font-size: 20px;
+        line-height: 28px;
+        text-align: center;
+        color: #ffffff;
+        letter-spacing: 10px;
+        margin-top: 40px;
+        border-color: #654da7;
+        background: #654da7;
+        background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#313e8f),
+    to(#654da7)
+  );
+        background: -webkit-linear-gradient(left, #313e8f, #654da7);
+        background: -o-linear-gradient(left, #313e8f, #654da7);
+        background: linear-gradient(to right, #313e8f, #654da7);
+      }
+    }
+  }
+  /***************************************** 标题提示 ******************************/
+  /***************************************** 消息提示 ******************************/
+  /***************************************** 浏览器列表 ******************************/
+  #compatible-prompt .browser a:hover,
+  #compatible-prompt .browser:focus,
+  #compatible-prompt .browser:active {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  /***************************************** 按钮 ******************************/
+  /* 悬浮聚焦 */
+  #compatible-prompt .browser .btn:hover,
+  #compatible-prompt .browser .btn:focus {
+    color: #fff;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#654da7),
+      to(#1f225d)
+    );
+    background: -webkit-linear-gradient(left, #654da7, #1f225d);
+    background: -o-linear-gradient(left, #654da7, #1f225d);
+    background: linear-gradient(to right, #654da7, #1f225d);
+    cursor: hand;
+    cursor: pointer;
+  }
+/*********************************缩放提示 login.css**********************************/
+.gb-hintbar {
+  background: #181747;
+  color: #a0441d;
+  font-size: 14px;
+  overflow: hidden;
+  width: 55vw;
+  min-width: 700px;
+  margin-left: calc(50vw - 350px);
+  position: fixed;
+  z-index: 99999998;
+  &:hover {
+      cursor: pointer;
+  }
+  .inner {
+      height: 30px;
+      line-height: 30px;
+      color: #fed300;
+      margin: 0 auto;
+      padding: 0px 0 10px 0px;
+      text-align: center;
+      a {
+        text-decoration: underline;
+      }
+  }
+  .text-close {
+      color: #fed300;
+      position: absolute;
+      right: 10px;
+      text-decoration: none;
+      top: 2px;
+  }
+}
