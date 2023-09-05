@@ -17,7 +17,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "html-withimg-loader": "^0.1.16",
     "imports-loader": "^0.8.0",
-    "jquery": "1.9.1",
+    "jquery": "3.5.0",
     "jquery-mousewheel": "^3.1.13",
     "lodash": "4.17.11",
     "malihu-custom-scrollbar-plugin": "^3.1.5",
